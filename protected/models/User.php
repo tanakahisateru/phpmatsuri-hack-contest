@@ -36,7 +36,8 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fullName, twitterName', 'length', 'max'=>255),
+			array('fullName', 'required'),
+			array('fullName', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, fullName, twitterName', 'safe', 'on'=>'search'),
@@ -83,6 +84,17 @@ class User extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+		));
+	}
+
+	/**
+	 * @param string $twitterName
+	 * @return User
+	 */
+	public function findByTwitterName($twitterName)
+	{
+		return $this->findByAttributes(array(
+			'twitterName' => $twitterName,
 		));
 	}
 }
