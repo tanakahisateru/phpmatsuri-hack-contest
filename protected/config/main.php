@@ -80,6 +80,12 @@ return array(
 			'class' => 'ext.bootstrap.components.Bootstrap',
 			'responsiveCss' => true,
 		),
+		'twitter' => array(
+			'class' => 'ext.yiitwitteroauth.YiiTwitter',
+			'consumer_key' => 'lIeKaPsdgOvd6DvCMdpuA',
+			'consumer_secret' => '2jhvecAjqlqPGzaviD1IDI9oFIAVBxviTQbXjvlhk',
+			'callback' => null,
+		),
 	),
 
 	// application-level parameters that can be accessed
