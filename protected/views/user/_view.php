@@ -1,16 +1,16 @@
 <div class="view">
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id),array('view','id'=>$data->id)); ?>
-	<br />
+	<?php echo CHtml::link(
+		CHtml::encode($data->fullName),
+		array('view', 'name'=>$data->twitterName)
+	); ?>
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('fullName')); ?>:</b>
-	<?php echo CHtml::encode($data->fullName); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('twitterName')); ?>:</b>
-	<?php echo CHtml::encode($data->twitterName); ?>
-	<br />
-
+	(<?php echo CHtml::link(
+		CHtml::encode('@' . $data->twitterName),
+		'http://twitter.com/' . $data->twitterName,
+		array(
+			'target' => '_blank',
+		)
+	); ?>)
 
 </div>

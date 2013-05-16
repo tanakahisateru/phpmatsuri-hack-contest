@@ -46,12 +46,12 @@ class UserController extends Controller
 
 	/**
 	 * Displays a particular model.
-	 * @param integer $id the ID of the model to be displayed
+	 * @param string $name
 	 */
-	public function actionView($id)
+	public function actionView($name)
 	{
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$this->loadModel($name),
 		));
 	}
 
@@ -70,7 +70,7 @@ class UserController extends Controller
 		{
 			$model->attributes=$_POST['User'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('view','name'=>$model->twitterName));
 		}
 
 		$this->render('create',array(
@@ -81,11 +81,11 @@ class UserController extends Controller
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
-	 * @param integer $id the ID of the model to be updated
+	 * @param string $name
 	 */
-	public function actionUpdate($id)
+	public function actionUpdate($name)
 	{
-		$model=$this->loadModel($id);
+		$model=$this->loadModel($name);
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -94,7 +94,7 @@ class UserController extends Controller
 		{
 			$model->attributes=$_POST['User'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('view','name'=>$model->twitterName));
 		}
 
 		$this->render('update',array(
@@ -105,9 +105,9 @@ class UserController extends Controller
 	/**
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
-	 * @param integer $id the ID of the model to be deleted
+	 * @param string $name
 	 */
-	public function actionDelete($id)
+	public function actionDelete($name)
 	{
 		if(Yii::app()->request->isPostRequest)
 		{
@@ -151,11 +151,11 @@ class UserController extends Controller
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
-	 * @param integer the ID of the model to be loaded
+	 * @param string $name
 	 */
-	public function loadModel($id)
+	public function loadModel($name)
 	{
-		$model=User::model()->findByPk($id);
+		$model=User::model()->findByTwitterName($name);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -163,7 +163,7 @@ class UserController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param CModel the model to be validated
+	 * @param CModel $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
