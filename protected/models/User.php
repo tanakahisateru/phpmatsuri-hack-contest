@@ -7,6 +7,8 @@
  * @property integer $id
  * @property string $fullName
  * @property string $twitterName
+ * @property integer $isAdmin
+ * @property integer $hideTwitterName
  *
  * The followings are the available model relations:
  * @property Hack $hack
@@ -42,12 +44,12 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fullName, twitterName', 'required'),
+			array('fullName, twitterName, isAdmin, hideTwitterName', 'required'),
 			array('fullName, twitterName', 'length', 'max'=>255),
-			array('fullName', 'required', 'on'=>'profile'),
+			array('fullName, hideTwitterName', 'required', 'on'=>'profile'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, fullName, twitterName', 'safe', 'on'=>'search'),
+			array('id, fullName, twitterName, isAdmin, hideTwitterName', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -73,6 +75,8 @@ class User extends CActiveRecord
 			'id' => 'ID',
 			'fullName' => 'Full Name',
 			'twitterName' => 'Twitter Name',
+			'isAdmin' => 'Is Admin',
+			'hideTwitterName' => 'Hide Twitter Name',
 		);
 	}
 
@@ -90,6 +94,8 @@ class User extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('fullName',$this->fullName,true);
 		$criteria->compare('twitterName',$this->twitterName,true);
+		$criteria->compare('isAdmin',$this->isAdmin);
+		$criteria->compare('hideTwitterName',$this->hideTwitterName);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

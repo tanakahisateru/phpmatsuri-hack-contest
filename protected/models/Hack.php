@@ -8,10 +8,14 @@
  * @property integer $userId
  * @property string $title
  * @property string $description
+ * @property integer $isApproved
+ * @property string $sequence
  *
  * The followings are the available model relations:
  * @property User $user
  * @property Review[] $reviews
+ *
+ * @method approved() Hack approved()
  */
 class Hack extends CActiveRecord
 {
@@ -43,11 +47,12 @@ class Hack extends CActiveRecord
 		return array(
 			array('userId, title', 'required'),
 			array('userId', 'numerical', 'integerOnly'=>true),
-			array('title', 'length', 'max'=>255),
+			array('isApproved', 'boolean'),
+			array('title, sequence', 'length', 'max'=>255),
 			array('description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, userId, title, description', 'safe', 'on'=>'search'),
+			array('id, userId, title, description, isApproved, sequence', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -76,6 +81,17 @@ class Hack extends CActiveRecord
 			'description' => 'Description',
 		);
 	}
+
+	public function scopes()
+	{
+		return array(
+			'approved'=>array(
+				'condition'=>'isApproved<>0',
+				'order'=>'sequence',
+			),
+		);
+	}
+
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
