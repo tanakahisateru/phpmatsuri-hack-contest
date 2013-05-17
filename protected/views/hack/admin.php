@@ -42,9 +42,13 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'userId',
-		'user.twitterName',
+		array(
+			'name'=>'userId',
+			'value'=>'sprintf("%d %s", $data->userId, $data->user->twitterName)',
+		),
 		'title',
+		'isApproved:boolean',
+		'sequence',
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
 		),

@@ -18,9 +18,13 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'userId',
-		'user.twitterName',
+		array(
+			'name'=>'userId',
+			'value'=>sprintf("%d %s", $model->userId, $model->user->twitterName),
+		),
 		'title',
-		'description',
+		'description:ntext',
+		'isApproved:boolean',
+		'sequence',
 	),
 )); ?>

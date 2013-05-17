@@ -24,5 +24,7 @@ $this->menu=array(
 	'attributes'=>array(
 		'fullName',
 		'twitterName',
+		'isAdmin:boolean',
+		'hideTwitterName:boolean',
 	),
 )); ?>
