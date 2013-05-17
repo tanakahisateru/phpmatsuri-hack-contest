@@ -1,4 +1,6 @@
 <?php
+/* @var $model User */
+
 $this->breadcrumbs=array(
 	'Users'=>array('admin'),
 	$model->twitterName,
@@ -24,3 +26,16 @@ $this->menu=array(
 		'twitterName',
 	),
 )); ?>
+
+<h2>Contest entry</h2>
+<?php if($model->hack): ?>
+	<?php $this->widget('bootstrap.widgets.TbDetailView',array(
+		'data'=>$model->hack,
+		'attributes'=>array(
+			'title',
+			'description:ntext',
+		),
+	)); ?>
+<?php else: ?>
+	<p>Not registered.</p>
+<?php endif; ?>
