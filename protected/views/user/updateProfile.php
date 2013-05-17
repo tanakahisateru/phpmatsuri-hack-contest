@@ -1,4 +1,6 @@
 <?php
+/* @var $model User */
+
 $this->breadcrumbs=array(
 	$model->twitterName=>array('profile'),
 	'Change Profile',
