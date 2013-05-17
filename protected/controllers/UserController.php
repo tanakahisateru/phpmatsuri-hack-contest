@@ -206,12 +206,7 @@ class UserController extends Controller
 	 */
 	public function loadCurrentUserModel()
 	{
-		if(Yii::app()->user->isGuest) {
-			throw new CHttpException(403,'This action not allowed.');
-		}
-		/** @var $user CWebUser */
-		$user = Yii::app()->user;
-		$model=User::model()->findByTwitterName($user->name);
+		$model = User::model()->getCurrentUser();
 		if($model===null)
 			throw new CHttpException(403,'This action not allowed.');
 		return $model;

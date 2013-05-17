@@ -126,4 +126,16 @@ class User extends CActiveRecord
 			'twitterName' => $twitterName,
 		));
 	}
+
+	public function getCurrentUser()
+	{
+		/* @var $webUser CWebUser */
+		$webUser = Yii::app()->user;
+		if($webUser->isGuest) {
+			return null;
+		}
+		else {
+			return self::model()->findByTwitterName($webUser->name);
+		}
+	}
 }
