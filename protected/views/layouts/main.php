@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
@@ -14,12 +15,12 @@
 	'brand'=>Yii::app()->name,
 	'brandUrl'=>Yii::app()->request->baseUrl,
 	'items'=>array(
-		array(
-			'class'=>'bootstrap.widgets.TbMenu',
-			'items'=>array(
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-			),
-		),
+		//array(
+		//	'class'=>'bootstrap.widgets.TbMenu',
+		//	'items'=>array(
+		//		array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
+		//	),
+		//),
 		array(
 			'class'=>'bootstrap.widgets.TbMenu',
 			'htmlOptions'=>array('class'=>'pull-right'),
@@ -33,8 +34,16 @@
 					'label'=>Yii::app()->user->name,
 					'url' => '#',
 					'items'=>array(
-						array('label'=>'Personal Home', 'url'=>array('/user/profile')),
-						array('label'=>'Logout', 'url'=>array('/site/logout')),
+						array(
+							'label'=>'Personal Home',
+							'icon'=>'home',
+							'url'=>array('/user/profile'),
+						),
+						array(
+							'label'=>'Logout',
+							'icon'=>'off',
+							'url'=>array('/site/logout')
+						),
 						'---',
 						array('label'=>'Show users', 'url'=>array('/user/admin')),
 					),

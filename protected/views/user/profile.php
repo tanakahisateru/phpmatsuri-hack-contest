@@ -6,10 +6,16 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Change Profile','url'=>array('updateProfile')),
-	array('label'=>'Remove me!','url'=>'#','linkOptions'=>array(
-		'submit'=>array('removeMe'),
-		'confirm'=>'Are you sure you want to leave from this service eternally?')
+	array(
+		'label'=>'Change Profile',
+		'icon'=>'user',
+		'url'=>array('updateProfile')
+	),
+	array(
+		'label'=>'Manage Contest Entry',
+		'icon'=>'edit',
+		'url'=>array('hack/register'),
+		'visible'=>$model->hack ? true : false
 	),
 );
 ?>
@@ -24,15 +30,17 @@ $this->menu=array(
 	),
 )); ?>
 
-<h2>Contest entry</h2>
+<h2>Your presentation</h2>
 <?php if($model->hack): ?>
-	<?php $this->widget('bootstrap.widgets.TbDetailView',array(
-		'data'=>$model->hack,
-		'attributes'=>array(
-			'title',
-			'description:ntext',
-		),
-	)); ?>
+	<div class="view">
+		<h3><?php echo CHtml::encode($model->hack->title); ?></h3>
+		<p><?php echo Yii::app()->format->ntext($model->hack->description); ?></p>
+	</div>
 <?php else: ?>
-	<p>Not registered.</p>
+	<p>... is still not registered. Join to the super LT now.</p>
+	<?php $this->widget('bootstrap.widgets.TbButton', array(
+		'buttonType'=>'link',
+		'url'=>array('hack/register'),
+		'label'=>'Register to hack contest',
+	)); ?>
 <?php endif; ?>

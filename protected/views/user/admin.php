@@ -1,7 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Users'=>array('admin'),
-	'Manage',
+	'Users',
 );
 
 $this->menu=array(

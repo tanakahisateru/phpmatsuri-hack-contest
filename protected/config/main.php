@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'PHPMatsuri Super LT',
+	'name'=>'PHPMatsuri',
 
 	// preloading 'log' component
 	'preload'=>array(
@@ -38,6 +38,7 @@ return array(
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
+			'loginUrl'=>array('site/twitterLogin'),
 		),
 		// uncomment the following to enable URLs in path-format
 		/*

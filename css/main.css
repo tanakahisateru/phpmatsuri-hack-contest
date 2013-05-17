@@ -66,3 +66,12 @@ span.required
 {
     color: red;
 }
+
+@media (max-width: 479px) {
+    .hero-unit {
+        padding: 40px 30px !important;
+    }
+    .hero-unit h1 {
+        font-size: 40px !important;
+    }
+}

@@ -7,10 +7,19 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'User Home','url'=>array('profile')),
-	array('label'=>'Remove me!','url'=>'#','linkOptions'=>array(
-		'submit'=>array('removeMe'),
-		'confirm'=>'Are you sure you want to leave from this service eternally?')
+	array(
+		'label'=>'User Home',
+		'icon'=>'home',
+		'url'=>array('profile'),
+	),
+	array(
+		'label'=>'Remove me!',
+		'icon'=>'fire',
+		'url'=>'#',
+		'linkOptions'=>array(
+			'submit'=>array('removeMe'),
+			'confirm'=>'Are you sure you want to leave from this service eternally?'
+		)
 	),
 );
 ?>

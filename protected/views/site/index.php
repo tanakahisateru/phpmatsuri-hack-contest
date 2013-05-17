@@ -8,7 +8,7 @@ $this->pageTitle=Yii::app()->name;
 <?php $this->beginWidget('bootstrap.widgets.TbHeroUnit', array(
 	'heading'=>Yii::app()->name,
 )); ?>
-	<p>This is hack contest app for PHPMatsuri.</p>
+	<p class="lead">This is hack contest app for PHPMatsuri.</p>
 <?php $this->endWidget(); ?>
 
 <?php if (Yii::app()->user->isGuest): ?>
