@@ -9,19 +9,24 @@ $this->breadcrumbs=array(
 
 	<div class="span8">
 		<div class="view">
-		<h1><?php echo CHtml::encode($model->title); ?></h1>
+		<h1>
+			<?php echo CHtml::encode($model->title); ?>
+			<small><?php echo CHtml::encode($model->sequence); ?></small>
+		</h1>
 
 		<div class="text-right">
 			by
 			<?php echo CHtml::encode($model->user->fullName); ?>
 
-			(<?php echo CHtml::link(
-				CHtml::encode('@' . $model->user->twitterName),
-				'http://twitter.com/' . $model->user->twitterName,
-				array(
-					'target' => '_blank',
-				)
-			); ?>)
+			<?php if (!$model->user->hideTwitterName): ?>
+				(<?php echo CHtml::link(
+					CHtml::encode('@' . $model->user->twitterName),
+					'http://twitter.com/' . $model->user->twitterName,
+					array(
+						'target' => '_blank',
+					)
+				); ?>)
+			<?php endif; ?>
 		</div>
 
 		<p><?php echo Yii::app()->format->ntext($model->description); ?></p>

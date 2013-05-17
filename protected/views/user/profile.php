@@ -27,6 +27,8 @@ $this->menu=array(
 	'attributes'=>array(
 		'fullName',
 		'twitterName',
+		'isAdmin:boolean',
+		'hideTwitterName:boolean',
 	),
 )); ?>
 
@@ -36,6 +38,13 @@ $this->menu=array(
 		<h3><?php echo CHtml::encode($model->hack->title); ?></h3>
 		<p><?php echo Yii::app()->format->ntext($model->hack->description); ?></p>
 	</div>
+	<?php $this->widget('bootstrap.widgets.TbDetailView',array(
+		'data'=>$model->hack,
+		'attributes'=>array(
+			'isApproved:boolean',
+			'sequence',
+		),
+	)); ?>
 <?php else: ?>
 	<p>... is still not registered. Join to the super LT now.</p>
 	<?php $this->widget('bootstrap.widgets.TbButton', array(
