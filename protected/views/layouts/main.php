@@ -44,8 +44,11 @@
 							'icon'=>'off',
 							'url'=>array('/site/logout')
 						),
-						'---',
-						array('label'=>'Show users', 'url'=>array('/user/admin')),
+						array(
+							'label'=>'Show users',
+							'url'=>array('/user/admin'),
+							'visible'=>Yii::app()->user->isAdmin,
+						),
 					),
 					'visible'=>!Yii::app()->user->isGuest,
 				),

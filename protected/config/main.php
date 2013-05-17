@@ -36,6 +36,7 @@ return array(
 	// application components
 	'components'=>array(
 		'user'=>array(
+			'class'=>'WebUser',
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 			'loginUrl'=>array('site/twitterLogin'),

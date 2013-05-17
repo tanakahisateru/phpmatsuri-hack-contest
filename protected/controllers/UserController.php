@@ -33,7 +33,7 @@ class UserController extends Controller
 			),
 			array('allow',
 				'actions'=>array('admin','view','create','update','delete'),
-				'users'=>array('@'), // TODO Change to admin role later
+				'expression'=>'$user->isAdmin',
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),

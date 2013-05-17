@@ -28,12 +28,16 @@ class HackController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('register','retire','review'),
+				'actions'=>array('review'),
+				'users'=>array('*'),
+			),
+			array('allow',
+				'actions'=>array('register','retire'),
 				'users'=>array('@'),
 			),
 			array('allow',
 				'actions'=>array('admin','view','create','update','delete'),
-				'users'=>array('@'), // TODO Change to admin role later
+				'expression'=>'$user->isAdmin',
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
