@@ -160,7 +160,7 @@ class HackController extends Controller
 						'<strong>Well done!</strong> You successfully register the contest.'
 					);
 				}
-				$this->redirect(array('user/profile','id'=>$model->id));
+				$this->redirect(array('user/profile'));
 			}
 		}
 
