@@ -173,7 +173,7 @@ class SiteController extends Controller
 		}
 		$dbUser->fullName = $fullNameProposal;
 		if ($dbUser->save(false)) {
-			$this->redirect(array('user/update', 'name'=>$dbUser->twitterName));
+			$this->redirect(array('user/updateProfile', 'name'=>$dbUser->twitterName));
 		}
 		else {
 			$this->redirect(Yii::app()->homeUrl);
