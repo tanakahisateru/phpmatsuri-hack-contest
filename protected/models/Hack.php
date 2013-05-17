@@ -98,6 +98,15 @@ class Hack extends CActiveRecord
 		));
 	}
 
+	protected function beforeSave()
+	{
+		if (User::model()->findByPk($this->userId) === null) {
+			$this->addError('userId', "User does not exist.");
+			return false;
+		}
+		return true;
+	}
+
 	protected function beforeDelete()
 	{
 		foreach($this->reviews as $review) {
