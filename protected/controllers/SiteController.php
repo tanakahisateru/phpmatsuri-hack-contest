@@ -22,7 +22,7 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$hacksDataProvider=new CActiveDataProvider('Hack');
+		$hacksDataProvider=new CActiveDataProvider(Hack::model()->approved());
 		$this->render('index',array(
 			'hacksDataProvider'=>$hacksDataProvider,
 		));

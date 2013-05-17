@@ -146,6 +146,7 @@ class HackController extends Controller
 		else {
 			$model = new Hack;
 			$model->userId = User::model()->getCurrentUser()->id;
+			$model->isApproved = false;
 		}
 
 		$model->scenario = 'register';
@@ -192,8 +193,12 @@ class HackController extends Controller
 	public function actionReview($id)
 	{
 		$this->layout = 'column1';
+		$model = $this->loadModel($id);
+		if(!$model->isApproved) {
+			throw new CHttpException(404,'The requested page does not exist.');
+		}
 		$this->render('review',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$model,
 		));
 	}
 
