@@ -1,23 +1,24 @@
 <?php
 
 /**
- * This is the model class for table "user".
+ * This is the model class for table "hack".
  *
- * The followings are the available columns in table 'user':
+ * The followings are the available columns in table 'hack':
  * @property integer $id
- * @property string $fullName
- * @property string $twitterName
+ * @property integer $userId
+ * @property string $title
+ * @property string $description
  *
  * The followings are the available model relations:
- * @property Hack $hack
+ * @property User $user
  * @property Review[] $reviews
  */
-class User extends CActiveRecord
+class Hack extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return User the static model class
+	 * @return Hack the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -29,7 +30,7 @@ class User extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'user';
+		return 'hack';
 	}
 
 	/**
@@ -40,11 +41,13 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fullName', 'required'),
-			array('fullName', 'length', 'max'=>255),
+			array('userId, title', 'required'),
+			array('userId', 'numerical', 'integerOnly'=>true),
+			array('title', 'length', 'max'=>255),
+			array('description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, fullName, twitterName', 'safe', 'on'=>'search'),
+			array('id, userId, title, description', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,8 +59,8 @@ class User extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'hack' => array(self::HAS_ONE, 'Hack', 'userId'),
-			'reviews' => array(self::HAS_MANY, 'Review', 'userId'),
+			'user' => array(self::BELONGS_TO, 'User', 'userId'),
+			'reviews' => array(self::HAS_MANY, 'Review', 'hackId'),
 		);
 	}
 
@@ -68,8 +71,9 @@ class User extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'fullName' => 'Full Name',
-			'twitterName' => 'Twitter Name',
+			'userId' => 'User',
+			'title' => 'Title',
+			'description' => 'Description',
 		);
 	}
 
@@ -85,22 +89,12 @@ class User extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('fullName',$this->fullName,true);
-		$criteria->compare('twitterName',$this->twitterName,true);
+		$criteria->compare('userId',$this->userId);
+		$criteria->compare('title',$this->title,true);
+		$criteria->compare('description',$this->description,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
-		));
-	}
-
-	/**
-	 * @param string $twitterName
-	 * @return User
-	 */
-	public function findByTwitterName($twitterName)
-	{
-		return $this->findByAttributes(array(
-			'twitterName' => $twitterName,
 		));
 	}
 }
