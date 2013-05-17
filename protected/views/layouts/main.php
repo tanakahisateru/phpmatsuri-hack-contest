@@ -33,9 +33,10 @@
 					'label'=>Yii::app()->user->name,
 					'url' => '#',
 					'items'=>array(
+						array('label'=>'Personal Home', 'url'=>array('/user/profile')),
 						array('label'=>'Logout', 'url'=>array('/site/logout')),
 						'---',
-						array('label'=>'Show users', 'url'=>array('/user/index')),
+						array('label'=>'Show users', 'url'=>array('/user/admin')),
 					),
 					'visible'=>!Yii::app()->user->isGuest,
 				),
@@ -52,6 +53,12 @@
             'links'=>$this->breadcrumbs,
         )); ?><!-- breadcrumbs -->
 	<?php endif; ?>
+
+	<?php $this->widget('bootstrap.widgets.TbAlert', array(
+		'block'=>true, // display a larger alert block?
+		'fade'=>true, // use transitions?
+		'closeText'=>'×', // close link text - if set to false, no close link is displayed
+	)); ?>
 
 	<?php echo $content; ?>
 

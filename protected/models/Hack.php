@@ -97,4 +97,12 @@ class Hack extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	protected function beforeDelete()
+	{
+		foreach($this->reviews as $review) {
+			$review->delete();
+		}
+		return true;
+	}
 }

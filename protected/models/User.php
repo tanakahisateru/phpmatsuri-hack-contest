@@ -14,6 +14,8 @@
  */
 class User extends CActiveRecord
 {
+	public $deletionBlockingReason = null;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -40,8 +42,9 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fullName', 'required'),
-			array('fullName', 'length', 'max'=>255),
+			array('fullName, twitterName', 'required'),
+			array('fullName, twitterName', 'length', 'max'=>255),
+			array('fullName', 'required', 'on'=>'profile'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, fullName, twitterName', 'safe', 'on'=>'search'),
@@ -91,6 +94,26 @@ class User extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+
+	public function canDeleteSafer()
+	{
+		if ($this->hack) {
+			$this->deletionBlockingReason = "Already registered as presenter. First retire from the hack contest.";
+			return false;
+		}
+		return true;
+	}
+
+	protected function beforeDelete()
+	{
+		foreach($this->reviews as $review) {
+			$review->delete();
+		}
+		if($this->hack) {
+			$this->hack->delete();
+		}
+		return true;
 	}
 
 	/**

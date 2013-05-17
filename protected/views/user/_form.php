@@ -9,6 +9,10 @@
 
 	<?php echo $form->textFieldRow($model,'fullName',array('class'=>'span5','maxlength'=>255)); ?>
 
+	<?php if (empty($withoutTwitterName)) :?>
+	<?php echo $form->textFieldRow($model,'twitterName',array('class'=>'span5','maxlength'=>255)); ?>
+	<?php endif; ?>
+
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',

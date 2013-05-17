@@ -1,15 +1,14 @@
 <?php
 $this->breadcrumbs=array(
-	'Users'=>array('index'),
+	'Users'=>array('admin'),
 	$model->twitterName=>array('view','id'=>$model->id),
 	'Update',
 );
 
 $this->menu=array(
-	array('label'=>'List User','url'=>array('index')),
+	array('label'=>'List User','url'=>array('admin')),
 	array('label'=>'Create User','url'=>array('create')),
-	array('label'=>'View User','url'=>array('view','name'=>$model->twitterName)),
-	array('label'=>'Manage User','url'=>array('admin')),
+	array('label'=>'View User','url'=>array('view','id'=>$model->id)),
 );
 ?>
 
