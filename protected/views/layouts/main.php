@@ -17,17 +17,28 @@
 		array(
 			'class'=>'bootstrap.widgets.TbMenu',
 			'items'=>array(
-				array('label'=>'Users', 'url'=>array('/user/index')),
 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
 			),
 		),
 		array(
 			'class'=>'bootstrap.widgets.TbMenu',
 			'htmlOptions'=>array('class'=>'pull-right'),
 			'items'=>array(
-				array('label'=>'Login with Twitter', 'url'=>array('/site/twitterLogin'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+				array(
+					'label'=>'Login with Twitter',
+					'url'=>array('/site/twitterLogin'),
+					'visible'=>Yii::app()->user->isGuest
+				),
+				array(
+					'label'=>Yii::app()->user->name,
+					'url' => '#',
+					'items'=>array(
+						array('label'=>'Logout', 'url'=>array('/site/logout')),
+						'---',
+						array('label'=>'Show users', 'url'=>array('/user/index')),
+					),
+					'visible'=>!Yii::app()->user->isGuest,
+				),
 			),
 		),
 	),
@@ -49,8 +60,6 @@
 </div><!-- page -->
 
 <div id="footer">
-	Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-	All Rights Reserved.<br/>
 	<?php echo Yii::powered(); ?>
 </div><!-- footer -->
 

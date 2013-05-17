@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'My Web Application',
+	'name'=>'PHPMatsuri Super LT',
 
 	// preloading 'log' component
 	'preload'=>array(
@@ -91,7 +91,8 @@ return array(
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>array(
-		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		'systemUserMD5Passwords' => array(
+			'admin' => '21232f297a57a5a743894a0e4a801fc3', // TODO Change later.
+		),
 	),
 );
