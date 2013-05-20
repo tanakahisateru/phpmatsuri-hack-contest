@@ -1,4 +1,8 @@
 <?php
+/* @var $model Hack */
+/* @var $review Review */
+/* @var $form TbActiveForm */
+
 $this->breadcrumbs=array(
 	$model->title,
 );
@@ -34,9 +38,50 @@ $this->breadcrumbs=array(
 	</div>
 
 	<div class="span4">
-		<h3>Your review...</h3>
-		star
-		comment
-		save
+		<?php if(!Yii::app()->user->isGuest) : ?>
+			<h3>Your review...</h3>
+			<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
+				'id'=>'review-form',
+				'enableAjaxValidation'=>true,
+			)); ?>
+
+			<?php echo $form->errorSummary($review); ?>
+
+			<?php echo $form->radioButtonListInlineRow($review,'point', $review->pointLabels()); ?>
+
+			<?php echo $form->textAreaRow($review,'comment',array('rows'=>3, 'class'=>'span4')); ?>
+
+			<div class="form-actions">
+				<?php $this->widget('bootstrap.widgets.TbButton', array(
+					'buttonType'=>'submit',
+					'type'=>'primary',
+					'label'=>$review->isNewRecord ? 'Post' : 'Update',
+				)); ?>
+				<?php $this->widget('bootstrap.widgets.TbButton', array(
+					'buttonType'=>'link',
+					'type'=>'danger',
+					'label'=>'Delete',
+					'url'=>'#',
+					'htmlOptions'=>array(
+						'submit'=>array('deleteReview','id'=>$model->id),
+						'confirm'=>'Are you sure you want to delete this review?'
+					),
+					'visible'=>!$review->isNewRecord
+				)); ?>
+			</div>
+
+			<?php $this->endWidget(); ?>
+		<?php else: ?>
+			<p class="text-center">You can authorize yourself with Twitter. Join now!</p>
+			<div class="text-center">
+				<?php $this->widget('bootstrap.widgets.TbButton', array(
+					'buttonType'=>'link',
+					'type'=>'primary',
+					'size'=>'large',
+					'url'=>array('site/twitterLogin'),
+					'label'=>'Login with Twitter',
+				)); ?>
+			</div>
+		<?php endif; ?>
 	</div>
 </div>

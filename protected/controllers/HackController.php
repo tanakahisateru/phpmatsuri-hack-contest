@@ -28,7 +28,7 @@ class HackController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('review'),
+				'actions'=>array('review', 'deleteReview'),
 				'users'=>array('*'),
 			),
 			array('allow',
@@ -197,9 +197,54 @@ class HackController extends Controller
 		if(!$model->isApproved) {
 			throw new CHttpException(404,'The requested page does not exist.');
 		}
+
+		/** @var WebUser $user */
+		$user = Yii::app()->user;
+
+		$review = null;
+		if (!$user->isGuest) {
+			$review = $this->loadOrCreateReviewByCurrentUserFor($id);
+		}
+		if (isset($_POST['Review'])) {
+			if ($user->isGuest) {
+				throw new CHttpException(403,'This action not allowed.');
+			}
+			$review->attributes = $_POST['Review'];
+			if ($review->save()) {
+				Yii::app()->user->setFlash(
+					'success',
+					'<strong>Thanks!</strong> You successfully send your review.'
+				);
+				$this->redirect(array('review', 'id'=>$id));
+			}
+		}
+
 		$this->render('review',array(
 			'model'=>$model,
+			'review'=>$review,
 		));
+	}
+
+	/**
+	 * @param integer $id
+	 * @throws CHttpException
+	 */
+	public function actionDeleteReview($id)
+	{
+		if(Yii::app()->request->isPostRequest)
+		{
+			$review = $this->loadOrCreateReviewByCurrentUserFor($id);
+			if (!$review->isNewRecord) {
+				$review->delete();
+				Yii::app()->user->setFlash(
+					'success',
+					'Your review has been removed.'
+				);
+			}
+			$this->redirect(array('review', 'id'=>$id));
+		}
+		else
+			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 
 	/**
@@ -228,6 +273,24 @@ class HackController extends Controller
 		if($model===null)
 			throw new CHttpException(403,'This action not allowed.');
 		return $model;
+	}
+
+	public function loadOrCreateReviewByCurrentUserFor($id)
+	{
+		$user = User::model()->getCurrentUser();
+		if ($user === null) {
+			throw new CHttpException(403,'This action not allowed.');
+		}
+		$review = Review::model()->findByAttributes(array(
+			'userId' => $user->id,
+			'hackId' => $id,
+		));
+		if ($review === null) {
+			$review = new Review();
+			$review->userId = $user->id;
+			$review->hackId = $id;
+		}
+		return $review;
 	}
 
 	/**

@@ -42,8 +42,9 @@ class Review extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('userId, hackId', 'required'),
+			array('userId, hackId, point', 'required'),
 			array('userId, hackId, point', 'numerical', 'integerOnly'=>true),
+			array('point', 'in', 'range'=>array_keys($this->pointLabels())),
 			array('comment', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -78,6 +79,15 @@ class Review extends CActiveRecord
 		);
 	}
 
+	public function pointLabels()
+	{
+		return array(
+			1 => 'Even',
+			2 => 'Great',
+			3 => 'Amazing',
+		);
+	}
+
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
@@ -99,4 +109,15 @@ class Review extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	protected function beforeValidate()
+	{
+		$this->comment = trim($this->comment, "\r\n\t ");
+		if (empty($this->comment)) {
+			$this->comment = null;
+		}
+		return true;
+	}
+
+
 }
