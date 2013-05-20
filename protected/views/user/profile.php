@@ -34,13 +34,11 @@ $this->menu=array(
 
 <h2>Your presentation</h2>
 <?php if($model->hack): ?>
-	<div class="view">
-		<h3><?php echo CHtml::encode($model->hack->title); ?></h3>
-		<p><?php echo Yii::app()->format->ntext($model->hack->description); ?></p>
-	</div>
 	<?php $this->widget('bootstrap.widgets.TbDetailView',array(
 		'data'=>$model->hack,
 		'attributes'=>array(
+			'title',
+			'description:ntext',
 			'isApproved:boolean',
 			'sequence',
 		),
