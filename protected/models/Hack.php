@@ -130,4 +130,14 @@ class Hack extends CActiveRecord
 		}
 		return true;
 	}
+
+	/**
+	 * @return Review[]
+	 */
+	public function getCommentedReviews()
+	{
+		return Review::model()->commented()->findAllByAttributes(array(
+			'hackId'=>$this->id,
+		));
+	}
 }

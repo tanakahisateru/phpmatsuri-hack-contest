@@ -13,6 +13,8 @@
  * The followings are the available model relations:
  * @property Hack $hack
  * @property User $user
+ *
+ * @method Review commented()
  */
 class Review extends CActiveRecord
 {
@@ -79,12 +81,13 @@ class Review extends CActiveRecord
 		);
 	}
 
-	public function pointLabels()
+	public function scopes()
 	{
 		return array(
-			1 => 'Even',
-			2 => 'Great',
-			3 => 'Amazing',
+			'commented'=>array(
+				'condition'=>'comment IS NOT NULL',
+				'order'=>'id', // TODO timestamp
+			),
 		);
 	}
 
@@ -117,6 +120,15 @@ class Review extends CActiveRecord
 			$this->comment = null;
 		}
 		return true;
+	}
+
+	public function pointLabels()
+	{
+		return array(
+			1 => 'Even',
+			2 => 'Great',
+			3 => 'Amazing',
+		);
 	}
 
 

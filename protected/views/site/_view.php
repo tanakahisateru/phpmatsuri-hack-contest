@@ -1,12 +1,15 @@
 <?php
 /* @var $data Hack */
 ?>
-<div class="span4">
+<div class="span3">
 	<div class="view">
 
 		<h4>
-			<?php echo CHtml::encode($data->title); ?>
-			<small><?php echo CHtml::encode($data->sequence); ?></small>
+			<?php echo CHtml::link(
+				CHtml::encode($data->title),
+				array('hack/review', 'id'=>$data->id)
+			); ?>
+			<span class="label label-info"><?php echo CHtml::encode($data->sequence); ?></span>
 		</h4>
 
 		<div class="text-right">
@@ -28,6 +31,7 @@
 		<p><?php echo CHtml::encode(mb_strimwidth($data->description, 0, 80, '...', 'utf-8')); ?></p>
 		-->
 
+		<!--
 		<div class="text-center">
 			<?php $this->widget('bootstrap.widgets.TbButton', array(
 				'buttonType'=>'link',
@@ -36,5 +40,6 @@
 				'label'=>'Detail',
 			)); ?>
 		</div>
+		-->
 	</div>
 </div>

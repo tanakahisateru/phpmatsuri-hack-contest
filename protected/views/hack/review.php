@@ -13,27 +13,51 @@ $this->breadcrumbs=array(
 
 	<div class="span8">
 		<div class="view">
-		<h1>
-			<?php echo CHtml::encode($model->title); ?>
-			<small><?php echo CHtml::encode($model->sequence); ?></small>
-		</h1>
+			<h1>
+				<?php echo CHtml::encode($model->title); ?>
+				<span class="label label-info"><?php echo CHtml::encode($model->sequence); ?></span>
+			</h1>
 
-		<div class="text-right">
-			by
-			<?php echo CHtml::encode($model->user->fullName); ?>
+			<div class="text-right">
+				by
+				<?php echo CHtml::encode($model->user->fullName); ?>
 
-			<?php if (!$model->user->hideTwitterName): ?>
-				(<?php echo CHtml::link(
-					CHtml::encode('@' . $model->user->twitterName),
-					'http://twitter.com/' . $model->user->twitterName,
-					array(
-						'target' => '_blank',
-					)
-				); ?>)
-			<?php endif; ?>
+				<?php if (!$model->user->hideTwitterName): ?>
+					(<?php echo CHtml::link(
+						CHtml::encode('@' . $model->user->twitterName),
+						'http://twitter.com/' . $model->user->twitterName,
+						array(
+							'target' => '_blank',
+						)
+					); ?>)
+				<?php endif; ?>
+			</div>
+
+			<p><?php echo Yii::app()->format->ntext($model->description); ?></p>
 		</div>
 
-		<p><?php echo Yii::app()->format->ntext($model->description); ?></p>
+		<h3>Reviewer comments</h3>
+		<div>
+			<?php foreach($model->getCommentedReviews() as $commentedReview): ?>
+				<div class="view">
+					<i><?php echo Yii::app()->format->ntext($commentedReview->comment); ?></i>
+					<div class="pull-right">
+						<small>
+							by
+							<?php echo CHtml::encode($commentedReview->user->fullName); ?>
+							<?php if (!$commentedReview->user->hideTwitterName): ?>
+								(<?php echo CHtml::link(
+									CHtml::encode('@' . $commentedReview->user->twitterName),
+									'http://twitter.com/' . $commentedReview->user->twitterName,
+									array(
+										'target' => '_blank',
+									)
+								); ?>)
+							<?php endif; ?>
+						</small>
+					</div>
+				</div>
+			<?php endforeach; ?>
 		</div>
 	</div>
 
