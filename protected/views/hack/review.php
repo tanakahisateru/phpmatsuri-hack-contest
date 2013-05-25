@@ -71,7 +71,9 @@ $this->breadcrumbs=array(
 
 			<?php echo $form->errorSummary($review); ?>
 
-			<?php echo $form->radioButtonListInlineRow($review,'point', $review->pointLabels()); ?>
+			<?php echo $form->radioButtonListInlineRow($review,'point', $review->pointLabels(), array(
+				'label'=>false,
+			)); ?>
 
 			<?php echo $form->textAreaRow($review,'comment',array('rows'=>3, 'class'=>'span4')); ?>
 
