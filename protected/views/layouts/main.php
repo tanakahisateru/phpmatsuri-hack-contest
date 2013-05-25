@@ -45,13 +45,9 @@
 							'url'=>array('/site/logout')
 						),
 						array(
-							'label'=>'Show users',
-							'url'=>array('/user/admin'),
-							'visible'=>Yii::app()->user->isAdmin,
-						),
-						array(
-							'label'=>'Show hacks',
-							'url'=>array('/hack/admin'),
+							'label'=>'Admin Tools',
+							'url'=>array('/admin'),
+							'icon'=>'cog',
 							'visible'=>Yii::app()->user->isAdmin,
 						),
 					),

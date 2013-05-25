@@ -11,18 +11,9 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<?php if (empty($withoutUserId)) :?>
-		<?php echo $form->textFieldRow($model,'userId',array('class'=>'span5')); ?>
-	<?php endif; ?>
-
 	<?php echo $form->textFieldRow($model,'title',array('class'=>'span5','maxlength'=>255)); ?>
 
 	<?php echo $form->textAreaRow($model,'description',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
-
-	<?php if (empty($withoutUserId)) :?>
-		<?php echo $form->checkBoxRow($model,'isApproved'); ?>
-		<?php echo $form->textFieldRow($model,'sequence',array('class'=>'span5','maxlength'=>255)); ?>
-	<?php endif; ?>
 
 
 	<div class="form-actions">

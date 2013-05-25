@@ -31,6 +31,7 @@ return array(
 				'bootstrap.gii'
 			),
 		),
+		'admin',
 	),
 
 	// application components

@@ -2,6 +2,7 @@
 /* @var $model User */
 
 $this->breadcrumbs=array(
+	'Admin'=>array('/admin'),
 	'Users'=>array('admin'),
 	$model->twitterName,
 );

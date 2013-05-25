@@ -1,10 +1,10 @@
 <?php
 $this->breadcrumbs=array(
+	'Admin'=>array('/admin'),
 	'Users',
 );
 
 $this->menu=array(
-	array('label'=>'List User','url'=>array('admin')),
 	array('label'=>'Create User','url'=>array('create')),
 );
 

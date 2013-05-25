@@ -13,6 +13,10 @@
 
 	<?php echo $form->textFieldRow($model,'fullName',array('class'=>'span5','maxlength'=>255)); ?>
 
+	<?php echo $form->textFieldRow($model,'twitterName',array('class'=>'span5','maxlength'=>255)); ?>
+
+	<?php echo $form->checkBoxRow($model,'isAdmin'); ?>
+
 	<?php echo $form->checkBoxRow($model,'hideTwitterName'); ?>
 
 	<div class="form-actions">

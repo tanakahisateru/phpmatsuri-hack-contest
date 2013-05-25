@@ -4,7 +4,6 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Hack','url'=>array('admin')),
 	array('label'=>'Create Hack','url'=>array('create')),
 );
 
