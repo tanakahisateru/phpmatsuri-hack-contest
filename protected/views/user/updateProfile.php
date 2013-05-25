@@ -3,17 +3,17 @@
 
 $this->breadcrumbs=array(
 	$model->twitterName=>array('profile'),
-	'Change Profile',
+	Yii::t('app', 'Change Profile'),
 );
 
 $this->menu=array(
 	array(
-		'label'=>'User Home',
+		'label'=>Yii::t('app', 'Personal Home'),
 		'icon'=>'home',
 		'url'=>array('profile'),
 	),
 	array(
-		'label'=>'Remove me!',
+		'label'=>Yii::t('app', 'Remove me!'),
 		'icon'=>'fire',
 		'url'=>'#',
 		'linkOptions'=>array(
@@ -26,7 +26,7 @@ $this->menu=array(
 
 <h1><?php echo CHtml::encode($model->twitterName); ?></h1>
 
-<p>Change your profile in this application.</p>
+<p><?php echo Yii::t('app', 'Change your profile in this application.'); ?></p>
 
 <?php echo $this->renderPartial('_form',array(
 	'model'=>$model,

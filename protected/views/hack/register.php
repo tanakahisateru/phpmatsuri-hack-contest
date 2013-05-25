@@ -2,17 +2,17 @@
 /* @var $model Hack */
 $this->breadcrumbs=array(
 	$model->user->twitterName=>array('user/profile'),
-	'Contest Entry',
+	Yii::t('app', 'Hack Entry'),
 );
 
 $this->menu=array(
 	array(
-		'label'=>'User Home',
+		'label'=>Yii::t('app', 'Personal Home'),
 		'icon'=>'home',
 		'url'=>array('user/profile'),
 	),
 	array(
-		'label'=>'Retire',
+		'label'=>Yii::t('app', 'Retire'),
 		'icon'=>'remove',
 		'url'=>'#',
 		'linkOptions'=>array(
@@ -24,7 +24,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Hack contest entry</h1>
+<h1><?php echo Yii::t('app', 'Hack contest entry'); ?></h1>
 
 <?php echo $this->renderPartial('_form', array(
 	'model'=>$model,

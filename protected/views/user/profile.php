@@ -7,12 +7,12 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array(
-		'label'=>'Change Profile',
+		'label'=>Yii::t('app', 'Change Profile'),
 		'icon'=>'user',
 		'url'=>array('updateProfile')
 	),
 	array(
-		'label'=>'Manage Contest Entry',
+		'label'=>Yii::t('app', 'Manage Hack Entry'),
 		'icon'=>'edit',
 		'url'=>array('hack/register'),
 		'visible'=>$model->hack ? true : false
@@ -32,7 +32,7 @@ $this->menu=array(
 	),
 )); ?>
 
-<h2>Your presentation</h2>
+<h2><?php echo Yii::t('app', 'Your Hack'); ?></h2>
 <?php if($model->hack): ?>
 	<?php $this->widget('bootstrap.widgets.TbDetailView',array(
 		'data'=>$model->hack,
@@ -44,10 +44,10 @@ $this->menu=array(
 		),
 	)); ?>
 <?php else: ?>
-	<p>... is still not registered. Join to the super LT now.</p>
+	<p><?php echo Yii::t('app', '... is still not registered. Join to the hack contest now.'); ?></p>
 	<?php $this->widget('bootstrap.widgets.TbButton', array(
 		'buttonType'=>'link',
 		'url'=>array('hack/register'),
-		'label'=>'Register to hack contest',
+		'label'=>Yii::t('app', 'Register to hack contest'),
 	)); ?>
 <?php endif; ?>

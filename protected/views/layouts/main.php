@@ -26,7 +26,7 @@
 			'htmlOptions'=>array('class'=>'pull-right'),
 			'items'=>array(
 				array(
-					'label'=>'Login with Twitter',
+					'label'=>Yii::t('app', 'Login with Twitter'),
 					'url'=>array('/site/twitterLogin'),
 					'visible'=>Yii::app()->user->isGuest
 				),
@@ -35,17 +35,17 @@
 					'url' => '#',
 					'items'=>array(
 						array(
-							'label'=>'Personal Home',
+							'label'=>Yii::t('app', 'Personal Home'),
 							'icon'=>'home',
 							'url'=>array('/user/profile'),
 						),
 						array(
-							'label'=>'Logout',
+							'label'=>Yii::t('app', 'Logout'),
 							'icon'=>'off',
 							'url'=>array('/site/logout')
 						),
 						array(
-							'label'=>'Admin Tools',
+							'label'=>Yii::t('app', 'Admin Tools'),
 							'url'=>array('/admin'),
 							'icon'=>'cog',
 							'visible'=>Yii::app()->user->isAdmin,

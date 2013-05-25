@@ -36,7 +36,7 @@ $this->breadcrumbs=array(
 			<p><?php echo Yii::app()->format->ntext($model->description); ?></p>
 		</div>
 
-		<h3>Reviewer comments</h3>
+		<h3><?php echo Yii::t('app', 'Reviewer comments'); ?></h3>
 		<div>
 			<?php foreach($model->getCommentedReviews() as $commentedReview): ?>
 				<div class="view">
@@ -63,7 +63,7 @@ $this->breadcrumbs=array(
 
 	<div class="span4">
 		<?php if(!Yii::app()->user->isGuest) : ?>
-			<h3>Your review...</h3>
+			<h3><?php echo Yii::t('app', 'Your review...'); ?></h3>
 			<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 				'id'=>'review-form',
 				'enableAjaxValidation'=>true,
@@ -81,12 +81,12 @@ $this->breadcrumbs=array(
 				<?php $this->widget('bootstrap.widgets.TbButton', array(
 					'buttonType'=>'submit',
 					'type'=>'primary',
-					'label'=>$review->isNewRecord ? 'Post' : 'Update',
+					'label'=>$review->isNewRecord ? Yii::t('app', 'Post') : Yii::t('app', 'Update'),
 				)); ?>
 				<?php $this->widget('bootstrap.widgets.TbButton', array(
 					'buttonType'=>'link',
 					'type'=>'danger',
-					'label'=>'Delete',
+					'label'=>Yii::t('app', 'Delete'),
 					'url'=>'#',
 					'htmlOptions'=>array(
 						'submit'=>array('deleteReview','id'=>$model->id),
@@ -98,14 +98,14 @@ $this->breadcrumbs=array(
 
 			<?php $this->endWidget(); ?>
 		<?php else: ?>
-			<p class="text-center">You can authorize yourself with Twitter. Join now!</p>
+			<p class="text-center"><?php echo Yii::t('app', 'You can authorize yourself with Twitter. Join now!'); ?></p>
 			<div class="text-center">
 				<?php $this->widget('bootstrap.widgets.TbButton', array(
 					'buttonType'=>'link',
 					'type'=>'primary',
 					'size'=>'large',
 					'url'=>array('site/twitterLogin'),
-					'label'=>'Login with Twitter',
+					'label'=>Yii::t('app', 'Login with Twitter'),
 				)); ?>
 			</div>
 		<?php endif; ?>

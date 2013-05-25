@@ -10,7 +10,7 @@
 	<div id="sidebar">
 	<?php
 		$this->beginWidget('zii.widgets.CPortlet', array(
-			'title'=>'Operations',
+			'title'=>Yii::t('app', 'Operations'),
 		));
 		$this->widget('bootstrap.widgets.TbMenu', array(
 			'type'=>'pills',
