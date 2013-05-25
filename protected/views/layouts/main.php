@@ -49,6 +49,11 @@
 							'url'=>array('/user/admin'),
 							'visible'=>Yii::app()->user->isAdmin,
 						),
+						array(
+							'label'=>'Show hacks',
+							'url'=>array('/hack/admin'),
+							'visible'=>Yii::app()->user->isAdmin,
+						),
 					),
 					'visible'=>!Yii::app()->user->isGuest,
 				),
