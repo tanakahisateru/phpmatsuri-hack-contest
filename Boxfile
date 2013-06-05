@@ -25,6 +25,7 @@ web1:
 
 db1:
   name: db1
+  type: mysql
 
 global:
   env:
