@@ -44,17 +44,15 @@ return array(
 			'allowAutoLogin'=>true,
 			'loginUrl'=>array('site/twitterLogin'),
 		),
-		// uncomment the following to enable URLs in path-format
-		/*
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'rules'=>array(
-				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
+			//	'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
+			'showScriptName'=>false,
 		),
-		*/
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=phpmatsuri_hack_contest',
 			'emulatePrepare' => true,
