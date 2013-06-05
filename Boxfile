@@ -5,5 +5,5 @@ web1:
     - protected/runtime
   php_version: 5.4.14
 
-  before_deploy:
-    - "php protected/yiic migrate up"
+before_deploy:
+  - "php protected/yiic migrate up"
