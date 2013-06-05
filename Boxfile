@@ -1,5 +1,5 @@
 web1:
-  name: phpmatsuri-hack-contest
+  name: yuki
   php_version: "5.4.14"
   php_extensions:
     - apc
@@ -21,3 +21,6 @@ web1:
     - protected/runtime
   before_deploy:
     - "php protected/yiic migrate up"
+
+db1:
+  name: db1
