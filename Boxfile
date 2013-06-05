@@ -4,5 +4,5 @@ web1:
   shared_writable_dirs: 
     - assets
     - protected/runtime
-before_deploy:
-  - "php protected/yiic migrate up"
+  before_deploy:
+    - "php protected/yiic migrate up"
