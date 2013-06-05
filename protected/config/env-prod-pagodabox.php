@@ -1,6 +1,6 @@
 <?php
 $db = array(
-	'connectionString' => sprintf('mysql:host=%s:%d;dbname=%s',
+	'connectionString' => sprintf('mysql:host=%s:%d;dbname=%s;charset=utf8',
 		$_SERVER["DB1_HOST"], $_SERVER["DB1_PORT"], $_SERVER["DB1_NAME"]),
 	'emulatePrepare' => true,
 	'username' => $_SERVER["DB1_USER"],

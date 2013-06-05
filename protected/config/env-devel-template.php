@@ -5,7 +5,7 @@
 
 // Set your database settings.
 $db = array(
-	'connectionString' => 'mysql:host=localhost;dbname=** dbname **',
+	'connectionString' => 'mysql:host=localhost;dbname=** dbname **;charset=utf8',
 	'emulatePrepare' => true,
 	'username' => '** user **',
 	'password' => '** password **',
