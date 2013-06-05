@@ -1,6 +1,6 @@
 web1:
   name: yuki
-  php_version: "5.4.14"
+  php_version: "5.3.23"
   php_extensions:
     - apc
     - curl
