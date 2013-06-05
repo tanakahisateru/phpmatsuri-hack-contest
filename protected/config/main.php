@@ -1,4 +1,5 @@
 <?php
+require dirname(__FILE__) . '/env-devel.php';
 
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
@@ -53,13 +54,7 @@ return array(
 			),
 			'showScriptName'=>false,
 		),
-		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=phpmatsuri_hack_contest',
-			'emulatePrepare' => true,
-			'username' => 'phpmatsuri',
-			'password' => 'phpmatsuri',
-			'charset' => 'utf8',
-		),
+		'db'=>$db,
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
@@ -85,8 +80,8 @@ return array(
 		),
 		'twitter' => array(
 			'class' => 'ext.yiitwitteroauth.YiiTwitter',
-			'consumer_key' => 'lIeKaPsdgOvd6DvCMdpuA',
-			'consumer_secret' => '2jhvecAjqlqPGzaviD1IDI9oFIAVBxviTQbXjvlhk',
+			'consumer_key' => $twitterAPIKey['consumer_key'],
+			'consumer_secret' => $twitterAPIKey['consumer_secret'],
 			'callback' => null,
 		),
 	),
@@ -94,8 +89,6 @@ return array(
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>array(
-		'systemUserMD5Passwords' => array(
-			'admin' => '21232f297a57a5a743894a0e4a801fc3', // TODO Change later.
-		),
+		'systemUserMD5Passwords' => $systemUserMD5Passwords,
 	),
 );
