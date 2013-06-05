@@ -8,7 +8,7 @@ class m130515_164907_init extends CDbMigration
 			'id' => 'pk',
 			'fullName' => 'string NOT NULL',
 			'twitterName' => 'string NOT NULL',
-		));
+		), 'ENGINE=InnoDB CHARSET=utf8');
 		$this->createIndex('fullName', 'user', 'fullName');
 		$this->createIndex('twitterName', 'user', 'twitterName');
 
@@ -17,7 +17,7 @@ class m130515_164907_init extends CDbMigration
 			'userId' => 'integer NOT NULL',
 			'title' => 'string NOT NULL',
 			'description' => 'text',
-		));
+		), 'ENGINE=InnoDB CHARSET=utf8');
 		$this->addForeignKey('hack_fk_userId', 'hack', 'userId', 'user', 'id');
 
 		$this->createTable('review', array(
@@ -26,7 +26,7 @@ class m130515_164907_init extends CDbMigration
 			'hackId' => 'integer NOT NULL',
 			'point' => 'integer',
 			'comment' => 'text',
-		));
+		), 'ENGINE=InnoDB CHARSET=utf8');
 		$this->addForeignKey('review_fk_userId', 'review', 'userId', 'user', 'id');
 		$this->addForeignKey('review_fk_hackId', 'review', 'hackId', 'hack', 'id');
 	}
