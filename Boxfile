@@ -1,7 +1,22 @@
 web1:
   name: phpmatsuri-hack-contest
   php_version: "5.4.14"
-  shared_writable_dirs: 
+  php_extensions:
+    - apc
+    - fileinfo
+    - gd
+    - http
+    - iconv
+    - intl
+    - json
+    - mbstring
+    - mcrypt
+    - mysqli
+    - pdo_mysql
+    - pdo
+    - pdo_sqlite
+    - sqlite
+  shared_writable_dirs:
     - assets
     - protected/runtime
   before_deploy:

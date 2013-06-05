@@ -1,4 +1,10 @@
 <?php
+if (isset($_ENV['PLATFORM']) && $_ENV['PLATFORM'] == 'pagodabox') {
+	require dirname(__FILE__) . '/env-prod-pagodabox.php';
+}
+else {
+	require dirname(__FILE__) . '/env-devel.php';
+}
 
 // This is the configuration for yiic console application.
 // Any writable CConsoleApplication properties can be configured here.
@@ -11,13 +17,7 @@ return array(
 
 	// application components
 	'components'=>array(
-		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=phpmatsuri_hack_contest',
-			'emulatePrepare' => true,
-			'username' => 'phpmatsuri',
-			'password' => 'phpmatsuri',
-			'charset' => 'utf8',
-		),
+		'db'=>$db,
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
