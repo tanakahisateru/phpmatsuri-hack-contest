@@ -19,8 +19,8 @@ web1:
   shared_writable_dirs:
     - assets
     - protected/runtime
-#  before_deploy:
-#    - "php protected/yiic.php migrate up --interactive=0"
+  before_deploy:
+    - "php protected/yiic.php migrate up --interactive=0"
 
 db1:
   name: db1
