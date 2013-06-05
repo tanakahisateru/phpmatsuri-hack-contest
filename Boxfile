@@ -1,9 +1,8 @@
 web1:
-  name: phpmatsuri-hack-contest
-  shared_writable_dirs:
-    - assets
+  name: phpmatsuri-hack-contest
+  php_version: "5.4.14"
+  shared_writable_dirs: 
+    - assets
     - protected/runtime
-  php_version: 5.4.14
-
 before_deploy:
   - "php protected/yiic migrate up"
