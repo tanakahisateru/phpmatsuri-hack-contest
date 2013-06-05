@@ -20,7 +20,7 @@ web1:
     - assets
     - protected/runtime
   before_deploy:
-    - "php protected/yiic.php migrate up --interactive=false"
+    - "php protected/yiic.php migrate up --interactive=0"
 
 db1:
   name: db1
