@@ -1,5 +1,10 @@
 <?php
-require dirname(__FILE__) . '/env-devel.php';
+if (isset($_ENV['PLATFORM']) && $_ENV['PLATFORM'] == 'pagodabox') {
+	require dirname(__FILE__) . '/env-prod-pagodabox.php';
+}
+else {
+	require dirname(__FILE__) . '/env-devel.php';
+}
 
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
