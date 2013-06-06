@@ -13,7 +13,7 @@
 <?php $this->widget('bootstrap.widgets.TbNavbar', array(
 	'type'=>'inverse',
 	'brand'=>Yii::app()->name,
-	'brandUrl'=>array('/site/index'),
+	'brandUrl'=>Yii::app()->homeUrl,
 	'items'=>array(
 		//array(
 		//	'class'=>'bootstrap.widgets.TbMenu',
