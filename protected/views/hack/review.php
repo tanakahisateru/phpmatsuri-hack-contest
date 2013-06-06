@@ -31,7 +31,13 @@ $this->breadcrumbs=array(
 				<?php endif; ?>
 			</div>
 
-			<p><?php echo Yii::app()->format->ntext($model->description); ?></p>
+			<?php
+				$this->beginWidget('CMarkdown', array(
+						'purifyOutput'=>true,
+					));
+				echo $model->description;
+				$this->endWidget();
+			?>
 		</div>
 
 		<h3><?php echo Yii::t('app', 'Reviewer comments'); ?></h3>

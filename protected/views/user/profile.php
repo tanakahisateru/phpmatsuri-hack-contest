@@ -1,4 +1,5 @@
 <?php
+/* @var $this Controller */
 /* @var $model User */
 
 $this->breadcrumbs=array(
@@ -38,6 +39,13 @@ $this->menu=array(
 		'data'=>$model->hack,
 		'attributes'=>array(
 			'title',
+			array(
+				'label' => $model->getAttributeLabel('description'),
+				'type'=>'raw',
+				'value' => $this->renderPartial('_mdtext', array(
+					'data' => $model->hack->description,
+				), true),
+			),
 			'description:ntext',
 			'isApproved:boolean',
 			'sequence',
