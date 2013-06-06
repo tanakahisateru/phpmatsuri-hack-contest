@@ -46,7 +46,6 @@ $this->menu=array(
 					'data' => $model->hack->description,
 				), true),
 			),
-			'description:ntext',
 			'isApproved:boolean',
 			'sequence',
 		),
