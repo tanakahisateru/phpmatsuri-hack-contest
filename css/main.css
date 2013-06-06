@@ -48,6 +48,10 @@ div.view
     border: 1px solid #CCC;
 }
 
+.trimmed-box {
+    overflow-x: hidden;
+}
+
 /* form */
 
 .hint

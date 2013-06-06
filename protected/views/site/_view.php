@@ -2,7 +2,7 @@
 /* @var $data Hack */
 ?>
 <div class="span3">
-	<div class="view clearfix">
+	<div class="view trimmed-box clearfix">
 
 		<h4>
 			<?php echo CHtml::link(
@@ -25,19 +25,5 @@
 			<?php endif; ?>
 		</div>
 
-		<!--
-		<p><?php echo CHtml::encode(mb_strimwidth($data->description, 0, 80, '...', 'utf-8')); ?></p>
-		-->
-
-		<!--
-		<div class="text-center">
-			<?php $this->widget('bootstrap.widgets.TbButton', array(
-				'buttonType'=>'link',
-				'icon'=>'info-sign',
-				'url'=>array('hack/review', 'id'=>$data->id),
-				'label'=>'Detail',
-			)); ?>
-		</div>
-		-->
 	</div>
 </div>

@@ -12,7 +12,7 @@ $this->breadcrumbs=array(
 <div class="row">
 
 	<div class="span8">
-		<div class="view">
+		<div class="view trimmed-box">
 			<h1>
 				<?php echo CHtml::encode($model->title); ?>
 				<span class="label label-info"><?php echo CHtml::encode($model->sequence); ?></span>
