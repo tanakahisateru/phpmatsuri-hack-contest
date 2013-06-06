@@ -95,5 +95,9 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		'systemUserMD5Passwords' => $systemUserMD5Passwords,
+		'htmlPurifierOptions' => array(
+			'HTML.SafeIframe' => true,
+			'URI.SafeIframeRegexp' => '%^http://%',
+		),
 	),
 );

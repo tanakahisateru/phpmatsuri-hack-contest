@@ -32,10 +32,12 @@ $this->breadcrumbs=array(
 			</div>
 
 			<?php
-				$this->beginWidget('CMarkdown', array(
-						'purifyOutput'=>true,
-					));
+				$this->beginWidget('CHtmlPurifier', array(
+					'options' => Yii::app()->params['htmlPurifierOptions'],
+				));
+				$this->beginWidget('CMarkdown', array( ));
 				echo $model->description;
+				$this->endWidget();
 				$this->endWidget();
 			?>
 		</div>
