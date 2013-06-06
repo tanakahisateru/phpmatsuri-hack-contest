@@ -17,7 +17,7 @@ $this->menu=array(
 		'url'=>'#',
 		'linkOptions'=>array(
 			'submit'=>array('retire'),
-			'confirm'=>'Are you sure you want to retire from the hack contest?'
+			'confirm'=>Yii::t('app', 'Are you sure you want to retire from the hack contest?')
 		),
 		'visible'=>!$model->isNewRecord
 	),

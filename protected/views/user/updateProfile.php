@@ -18,7 +18,7 @@ $this->menu=array(
 		'url'=>'#',
 		'linkOptions'=>array(
 			'submit'=>array('removeMe'),
-			'confirm'=>'Are you sure you want to leave from this service eternally?'
+			'confirm'=>Yii::t('app', 'Are you sure you want to leave from this service eternally?')
 		)
 	),
 );

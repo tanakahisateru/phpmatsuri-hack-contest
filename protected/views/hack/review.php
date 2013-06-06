@@ -19,9 +19,7 @@ $this->breadcrumbs=array(
 			</h1>
 
 			<div class="text-right">
-				by
 				<?php echo CHtml::encode($model->user->fullName); ?>
-
 				<?php if (!$model->user->hideTwitterName): ?>
 					(<?php echo CHtml::link(
 						CHtml::encode('@' . $model->user->twitterName),
@@ -90,7 +88,7 @@ $this->breadcrumbs=array(
 					'url'=>'#',
 					'htmlOptions'=>array(
 						'submit'=>array('deleteReview','id'=>$model->id),
-						'confirm'=>'Are you sure you want to delete this review?'
+						'confirm'=>Yii::t('app', 'Are you sure you want to delete this review?')
 					),
 					'visible'=>!$review->isNewRecord
 				)); ?>

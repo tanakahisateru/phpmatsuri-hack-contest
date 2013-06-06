@@ -76,9 +76,11 @@ class Hack extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'userId' => 'User',
-			'title' => 'Title',
-			'description' => 'Description',
+			'userId' => Yii::t('app', 'User'),
+			'title' => Yii::t('app', 'Title'),
+			'description' => Yii::t('app', 'Description'),
+			'isApproved' => Yii::t('app', 'Approved'),
+			'sequence' => Yii::t('app', 'Sequence Number'),
 		);
 	}
 

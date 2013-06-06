@@ -13,9 +13,7 @@
 		</h4>
 
 		<div class="text-right">
-			by
 			<?php echo CHtml::encode($data->user->fullName); ?>
-
 			<?php if (!$data->user->hideTwitterName): ?>
 				(<?php echo CHtml::link(
 					CHtml::encode('@' . $data->user->twitterName),

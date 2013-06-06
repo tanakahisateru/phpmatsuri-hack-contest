@@ -74,10 +74,10 @@ class Review extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'userId' => 'User',
-			'hackId' => 'Hack',
-			'point' => 'Point',
-			'comment' => 'Comment',
+			'userId' => Yii::t('app', 'User'),
+			'hackId' => Yii::t('app', 'Hack'),
+			'point' => Yii::t('app', 'Point'),
+			'comment' => Yii::t('app', 'Comment'),
 		);
 	}
 
@@ -125,9 +125,9 @@ class Review extends CActiveRecord
 	public function pointLabels()
 	{
 		return array(
-			1 => 'Even',
-			2 => 'Great',
-			3 => 'Amazing',
+			1 => Yii::t('app', 'Even'),
+			2 => Yii::t('app', 'Great'),
+			3 => Yii::t('app', 'Awesome'),
 		);
 	}
 

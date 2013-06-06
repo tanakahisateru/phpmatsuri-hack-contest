@@ -61,7 +61,7 @@ class HackController extends Controller
 				if ($model->isNewRecord) {
 					Yii::app()->user->setFlash(
 						'success',
-						'<strong>Well done!</strong> You successfully register the contest.'
+						Yii::t('app', '<strong>Well done!</strong> You successfully register the contest.')
 					);
 				}
 				$this->redirect(array('user/profile'));
@@ -83,7 +83,7 @@ class HackController extends Controller
 				if ($model->delete()) {
 					Yii::app()->user->setFlash(
 						'success',
-						"You've retired from the contest."
+						Yii::t('app', "You've retired from the contest.")
 					);
 				}
 			}
@@ -116,7 +116,7 @@ class HackController extends Controller
 			if ($review->save()) {
 				Yii::app()->user->setFlash(
 					'success',
-					'<strong>Thanks!</strong> You successfully send your review.'
+					Yii::t('app', '<strong>Thanks!</strong> You successfully send your review.')
 				);
 				$this->redirect(array('review', 'id'=>$id));
 			}
@@ -141,7 +141,7 @@ class HackController extends Controller
 				$review->delete();
 				Yii::app()->user->setFlash(
 					'success',
-					'Your review has been removed.'
+					Yii::t('app', 'Your review has been removed.')
 				);
 			}
 			$this->redirect(array('review', 'id'=>$id));

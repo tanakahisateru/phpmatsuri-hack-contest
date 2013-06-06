@@ -153,7 +153,7 @@ class UserController extends Controller
 			if($model->save()) {
 				Yii::app()->user->setFlash(
 					'success',
-					'<strong>Well done!</strong> You successfully save your settings.'
+					Yii::t('app', '<strong>Well done!</strong> You successfully save your settings.')
 				);
 				$this->redirect(array('profile'));
 			}

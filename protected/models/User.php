@@ -73,10 +73,10 @@ class User extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'fullName' => 'Full Name',
-			'twitterName' => 'Twitter Name',
-			'isAdmin' => 'Is Admin',
-			'hideTwitterName' => 'Hide Twitter Name',
+			'fullName' => Yii::t('app', 'Full Name'),
+			'twitterName' => Yii::t('app', 'Twitter Name'),
+			'isAdmin' => Yii::t('app', 'Admin User'),
+			'hideTwitterName' => Yii::t('app', 'Hide Twitter Name'),
 		);
 	}
 
@@ -105,7 +105,7 @@ class User extends CActiveRecord
 	public function canDeleteSafer()
 	{
 		if ($this->hack) {
-			$this->deletionBlockingReason = "Already registered as presenter. First retire from the hack contest.";
+			$this->deletionBlockingReason = Yii::t('app', "Already registered as presenter. First retire from the hack contest.");
 			return false;
 		}
 		return true;
