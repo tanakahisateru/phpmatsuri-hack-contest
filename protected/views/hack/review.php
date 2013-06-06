@@ -43,7 +43,7 @@ $this->breadcrumbs=array(
 		<h3><?php echo Yii::t('app', 'Reviewer comments'); ?></h3>
 		<div>
 			<?php foreach($model->getCommentedReviews() as $commentedReview): ?>
-				<div class="view">
+				<div class="view clearfix">
 					<i><?php echo Yii::app()->format->ntext($commentedReview->comment); ?></i>
 					<div class="pull-right">
 						<small>

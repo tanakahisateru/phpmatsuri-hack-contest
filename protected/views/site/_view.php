@@ -2,7 +2,7 @@
 /* @var $data Hack */
 ?>
 <div class="span3">
-	<div class="view">
+	<div class="view clearfix">
 
 		<h4>
 			<?php echo CHtml::link(
