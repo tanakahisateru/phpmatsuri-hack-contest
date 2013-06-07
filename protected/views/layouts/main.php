@@ -55,6 +55,33 @@
 				),
 			),
 		),
+		array(
+			'class'=>'bootstrap.widgets.TbMenu',
+			'items'=>array(
+				array(
+					'label'=>'',
+					'icon'=>'globe white',
+					'items'=>array(
+						array('label'=>'English', 'url'=>'#',
+							'linkOptions'=>array(
+								'submit'=>array('/site/language'), 'params'=>array(
+									'language'=>'en',
+									'returnUrl'=>Yii::app()->request->requestUri,
+								),
+							)
+						),
+						array('label'=>'Japanese', 'url'=>'#',
+							'linkOptions'=>array(
+								'submit'=>array('/site/language'), 'params'=>array(
+									'language'=>'ja',
+									'returnUrl'=>Yii::app()->request->requestUri,
+								),
+							)
+						),
+					),
+				)
+			),
+		),
 	),
 ));
 ?>

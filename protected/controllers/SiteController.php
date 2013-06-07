@@ -180,6 +180,18 @@ class SiteController extends Controller
 		}
 	}
 
+	public function actionLanguage()
+	{
+		if (empty($_POST)) {
+			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+		}
+		$session = new CHttpSession;
+		$session->open();
+		$session['language'] = $_POST['language'];
+		$session->close();
+		$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : Yii::app()->homeUrl);
+	}
+
 	public function actionPhpinfo()
 	{
 		phpinfo();
