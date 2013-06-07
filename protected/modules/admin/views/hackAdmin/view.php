@@ -20,8 +20,12 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		array(
-			'name'=>'userId',
-			'value'=>sprintf("%d %s", $model->userId, $model->user->twitterName),
+			'name'=>'userTwitterName',
+			'type'=>'raw',
+			'value'=>CHtml::link(
+				$model->user->twitterName,
+				array('/admin/userAdmin/view', 'id'=>$model->userId)
+			),
 		),
 		'title',
 		'description:ntext',

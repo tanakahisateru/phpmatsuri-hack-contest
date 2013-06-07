@@ -42,11 +42,23 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
+		//'userId',
 		array(
-			'name'=>'userId',
-			'value'=>'sprintf("%d %s", $data->userId, $data->user->twitterName)',
+			'name'=>'userTwitterName',
+			'type'=>'raw',
+			'value'=>'CHtml::link(
+				$data->user->twitterName,
+				array("/admin/userAdmin/view", "id"=>$data->userId)
+			)'
 		),
-		'title',
+		array(
+			'name'=>'title',
+			'type'=>'raw',
+			'value'=>'CHtml::link(
+				$data->title,
+				array("/hack/review", "id"=>$data->id)
+			)'
+		),
 		'isApproved:boolean',
 		'sequence',
 		array(

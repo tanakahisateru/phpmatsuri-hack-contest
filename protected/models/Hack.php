@@ -20,6 +20,11 @@
 class Hack extends CActiveRecord
 {
 	/**
+	 * @var string for search
+	 */
+	public $userTwitterName;
+
+	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
 	 * @return Hack the static model class
@@ -81,6 +86,7 @@ class Hack extends CActiveRecord
 			'description' => Yii::t('app', 'Description'),
 			'isApproved' => Yii::t('app', 'Approved'),
 			'sequence' => Yii::t('app', 'Sequence Number'),
+			'userTwitterName' => Yii::t('app', 'Twitter Name'),
 		);
 	}
 
@@ -105,14 +111,27 @@ class Hack extends CActiveRecord
 		// should not be searched.
 
 		$criteria=new CDbCriteria;
+		$criteria->with = array('user');
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('userId',$this->userId);
+		//$criteria->compare('userId',$this->userId);
+		$criteria->compare('user.twitterName',$this->userTwitterName, true);
 		$criteria->compare('title',$this->title,true);
 		$criteria->compare('description',$this->description,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'sort'=>array(
+				'attributes' => array(
+					'userTwitterName'=>array(
+						'asc'=>'user.twitterName',
+						'desc'=>'user.twitterName DESC',
+						'label'=>$this->getAttributeLabel('userTwitterName'),
+						'default'=>'asc',
+					),
+					'*',
+				),
+			),
 		));
 	}
 

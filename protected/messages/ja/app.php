@@ -33,6 +33,7 @@ return array(
 	'Hack' => 'ハック',
 	'Point' => 'ポイント',
 	'Comment' => 'コメント',
+	'User Name' => 'ユーザー名',
 
 	'Even' => 'まあまあ',
 	'Great' => 'すごい',

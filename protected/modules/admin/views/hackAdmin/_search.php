@@ -7,6 +7,8 @@
 
 	<?php echo $form->textFieldRow($model,'userId',array('class'=>'span5')); ?>
 
+	<?php echo $form->textFieldRow($model,'userTwitterName',array('class'=>'span5')); ?>
+
 	<?php echo $form->textFieldRow($model,'title',array('class'=>'span5','maxlength'=>255)); ?>
 
 	<?php echo $form->textAreaRow($model,'description',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
