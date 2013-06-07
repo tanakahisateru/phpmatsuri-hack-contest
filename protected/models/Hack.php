@@ -161,4 +161,19 @@ class Hack extends CActiveRecord
 			'hackId'=>$this->id,
 		));
 	}
+
+	/**
+	 * @param User $user
+	 * @return Review
+	 */
+	public function getReviewOf($user)
+	{
+		if (empty($user)) {
+			return null;
+		}
+		return Review::model()->findByAttributes(array(
+			'userId' => $user->id,
+			'hackId' => $this->id,
+		));
+	}
 }

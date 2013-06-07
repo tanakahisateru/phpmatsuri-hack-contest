@@ -14,6 +14,8 @@
  * @property Hack $hack
  * @property User $user
  *
+ * @property string $pointAsText
+ *
  * @method Review commented()
  */
 class Review extends CActiveRecord
@@ -131,5 +133,9 @@ class Review extends CActiveRecord
 		);
 	}
 
-
+	public function getPointAsText()
+	{
+		$labels = $this->pointLabels();
+		return isset($labels[$this->point]) ? $labels[$this->point] : $this->point;
+	}
 }

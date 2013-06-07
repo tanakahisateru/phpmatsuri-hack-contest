@@ -25,5 +25,15 @@
 			<?php endif; ?>
 		</div>
 
+		<?php if (!Yii::app()->user->isGuest): ?>
+			<div>
+				<?php $review = $data->getReviewOf(Yii::app()->user->asDbUser()); ?>
+				<?php if ($review): ?>
+					<?php echo Yii::t('app', 'Your review...'); ?>
+					<?php echo CHtml::encode($review->pointAsText); ?>
+				<?php endif; ?>
+			</div>
+		<?php endif; ?>
+
 	</div>
 </div>
