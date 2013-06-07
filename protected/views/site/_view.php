@@ -30,7 +30,9 @@
 				<?php $review = $data->getReviewOf(Yii::app()->user->asDbUser()); ?>
 				<?php if ($review): ?>
 					<?php echo Yii::t('app', 'Your review...'); ?>
+					<span class="badge badge-important">
 					<?php echo CHtml::encode($review->pointAsText); ?>
+					</span>
 				<?php endif; ?>
 			</div>
 		<?php endif; ?>

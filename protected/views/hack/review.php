@@ -70,6 +70,16 @@ $this->breadcrumbs=array(
 	<div class="span4">
 		<?php if(!Yii::app()->user->isGuest) : ?>
 			<h3><?php echo Yii::t('app', 'Your review...'); ?></h3>
+
+			<?php if (!$review->isNewRecord): ?>
+				<span class="review-summary">
+					<?php echo CHtml::encode($review->pointAsText); ?>
+				</span>
+				<?php echo CHtml::link(Yii::t('app', 'Update'), '#', array(
+					'id'=>'update-review',
+				)); ?>
+			<?php endif; ?>
+
 			<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 				'id'=>'review-form',
 				'enableAjaxValidation'=>true,
@@ -117,3 +127,16 @@ $this->breadcrumbs=array(
 		<?php endif; ?>
 	</div>
 </div>
+<?php Yii::app()->clientScript->registerScript('toggle', "
+$(function(){
+	var updateReview = $('#update-review');
+	var reviewForm = $('#review-form');
+	if (updateReview) {
+		reviewForm.hide();
+		updateReview.click(function() {
+			reviewForm.slideToggle();
+			return false;
+		})
+	}
+});
+"); ?>
