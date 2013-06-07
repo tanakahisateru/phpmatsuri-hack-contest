@@ -1,5 +1,6 @@
 <?php
 $this->breadcrumbs=array(
+	'Admin'=>array('/admin'),
 	'Hacks'=>array('admin'),
 	$model->title,
 );

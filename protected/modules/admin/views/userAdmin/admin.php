@@ -50,3 +50,11 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		),
 	),
 )); ?>
+
+<div class="pull-right">
+	<?php $this->widget('bootstrap.widgets.TbMenu', array(
+			'type'=>'pills',
+			'items'=>$this->menu,
+			'htmlOptions'=>array('class'=>'operations'),
+		)); ?>
+</div>
