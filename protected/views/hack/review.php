@@ -75,9 +75,12 @@ $this->breadcrumbs=array(
 				<span class="review-summary">
 					<?php echo CHtml::encode($review->pointAsText); ?>
 				</span>
-				<?php echo CHtml::link(Yii::t('app', 'Update'), '#', array(
-					'id'=>'update-review',
-				)); ?>
+				<span id="update-review">
+					<?php echo CHtml::link(
+						'<i class="icon-chevron-down"></i>' . Yii::t('app', 'Update'),
+						'#'
+					); ?>
+				</span>
 			<?php endif; ?>
 
 			<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
@@ -133,7 +136,7 @@ $(function(){
 	var reviewForm = $('#review-form');
 	if (updateReview) {
 		reviewForm.hide();
-		updateReview.click(function() {
+		updateReview.find('a').click(function() {
 			reviewForm.slideToggle();
 			return false;
 		})
