@@ -134,7 +134,7 @@ $this->breadcrumbs=array(
 $(function(){
 	var updateReview = $('#update-review');
 	var reviewForm = $('#review-form');
-	if (updateReview) {
+	if (updateReview.length > 0) {
 		reviewForm.hide();
 		updateReview.find('a').click(function() {
 			reviewForm.slideToggle();
