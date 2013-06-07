@@ -36,6 +36,12 @@ body
 
 /* parts */
 
+body .navbar-fixed-top .brand {
+    margin-left: 4px;
+    padding-left: 40px;
+    background: url(../images/matsuri-logo.jpg) left no-repeat;
+}
+
 .rememberMe label
 {
     display: inline;

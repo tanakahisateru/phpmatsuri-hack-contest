@@ -12,7 +12,7 @@
 
 <?php $this->widget('bootstrap.widgets.TbNavbar', array(
 	'type'=>'inverse',
-	'brand'=>Yii::app()->name,
+	'brand'=>sprintf("<span class='hidden-phone'>%s</span>&nbsp;", Yii::app()->name),
 	'brandUrl'=>Yii::app()->homeUrl,
 	'items'=>array(
 		//array(
@@ -53,11 +53,12 @@
 					),
 					'visible'=>!Yii::app()->user->isGuest,
 				),
-			),
-		),
-		array(
-			'class'=>'bootstrap.widgets.TbMenu',
-			'items'=>array(
+//			),
+//		),
+//		array(
+//			'class'=>'bootstrap.widgets.TbMenu',
+//			'htmlOptions'=>array('class'=>'pull-left'),
+//			'items'=>array(
 				array(
 					'label'=>'',
 					'icon'=>'globe white',
