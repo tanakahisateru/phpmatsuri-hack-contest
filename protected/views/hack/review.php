@@ -69,53 +69,62 @@ $this->breadcrumbs=array(
 
 	<div class="span4">
 		<?php if(!Yii::app()->user->isGuest) : ?>
-			<h3><?php echo Yii::t('app', 'Your review...'); ?></h3>
-
-			<?php if (!$review->isNewRecord): ?>
-				<span class="review-summary">
-					<?php echo CHtml::encode($review->pointAsText); ?>
-				</span>
-				<span id="update-review">
-					<?php echo CHtml::link(
-						'<i class="icon-chevron-down"></i>' . Yii::t('app', 'Update'),
-						'#'
-					); ?>
-				</span>
-			<?php endif; ?>
-
-			<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
-				'id'=>'review-form',
-				'enableAjaxValidation'=>true,
-			)); ?>
-
-			<?php echo $form->errorSummary($review); ?>
-
-			<?php echo $form->radioButtonListInlineRow($review,'point', $review->pointLabels(), array(
-				'label'=>false,
-			)); ?>
-
-			<?php echo $form->textAreaRow($review,'comment',array('rows'=>3, 'class'=>'span4')); ?>
-
-			<div class="form-actions">
-				<?php $this->widget('bootstrap.widgets.TbButton', array(
-					'buttonType'=>'submit',
-					'type'=>'primary',
-					'label'=>$review->isNewRecord ? Yii::t('app', 'Post') : Yii::t('app', 'Update'),
-				)); ?>
+			<?php if($model->user->twitterName == Yii::app()->user->name) : ?>
+				<p><?php echo CHtml::encode(Yii::t('app', 'This hack is yours.')); ?></p>
 				<?php $this->widget('bootstrap.widgets.TbButton', array(
 					'buttonType'=>'link',
-					'type'=>'danger',
-					'label'=>Yii::t('app', 'Delete'),
-					'url'=>'#',
-					'htmlOptions'=>array(
-						'submit'=>array('deleteReview','id'=>$model->id),
-						'confirm'=>Yii::t('app', 'Are you sure you want to delete this review?')
-					),
-					'visible'=>!$review->isNewRecord
+					'icon'=>'edit',
+					'url'=>array('register', 'from'=>'reviewPage'),
+					'label'=>Yii::t('app', 'Manage Hack Entry'),
 				)); ?>
-			</div>
+			<?php else : ?>
+				<h3><?php echo Yii::t('app', 'Your review...'); ?></h3>
+				<?php if (!$review->isNewRecord): ?>
+					<span class="review-summary">
+						<?php echo CHtml::encode($review->pointAsText); ?>
+					</span>
+					<span id="update-review">
+						<?php echo CHtml::link(
+							'<i class="icon-chevron-down"></i>' . Yii::t('app', 'Update'),
+							'#'
+						); ?>
+					</span>
+				<?php endif; ?>
 
-			<?php $this->endWidget(); ?>
+				<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
+					'id'=>'review-form',
+					'enableAjaxValidation'=>true,
+				)); ?>
+
+				<?php echo $form->errorSummary($review); ?>
+
+				<?php echo $form->radioButtonListInlineRow($review,'point', $review->pointLabels(), array(
+					'label'=>false,
+				)); ?>
+
+				<?php echo $form->textAreaRow($review,'comment',array('rows'=>3, 'class'=>'span4')); ?>
+
+				<div class="form-actions">
+					<?php $this->widget('bootstrap.widgets.TbButton', array(
+						'buttonType'=>'submit',
+						'type'=>'primary',
+						'label'=>$review->isNewRecord ? Yii::t('app', 'Post') : Yii::t('app', 'Update'),
+					)); ?>
+					<?php $this->widget('bootstrap.widgets.TbButton', array(
+						'buttonType'=>'link',
+						'type'=>'danger',
+						'label'=>Yii::t('app', 'Delete'),
+						'url'=>'#',
+						'htmlOptions'=>array(
+							'submit'=>array('deleteReview','id'=>$model->id),
+							'confirm'=>Yii::t('app', 'Are you sure you want to delete this review?')
+						),
+						'visible'=>!$review->isNewRecord
+					)); ?>
+				</div>
+
+				<?php $this->endWidget(); ?>
+			<?php endif; ?>
 		<?php else: ?>
 			<p class="text-center"><?php echo Yii::t('app', 'You can authorize yourself with Twitter. Join now!'); ?></p>
 			<div class="text-center">

@@ -64,7 +64,12 @@ class HackController extends Controller
 						Yii::t('app', '<strong>Well done!</strong> You successfully register the contest.')
 					);
 				}
-				$this->redirect(array('user/profile'));
+				if (isset($_GET['from']) && $_GET['from'] == 'reviewPage') {
+					$this->redirect(array('review', 'id'=>$model->id));
+				}
+				else {
+					$this->redirect(array('user/profile'));
+				}
 			}
 		}
 

@@ -53,6 +53,8 @@ return array(
 
 	'Reviewer comments' => 'レビュアーのコメント',
 	'Your review...' => 'あなたの評価は...',
+	'This hack is yours.' => 'このハックはあなたのものです。',
+	'Save and back to the review page' => '保存してレビューページに戻る',
 
 	'<strong>Well done!</strong> You successfully save your settings.' => '<strong>できました!</strong> 設定の保存に成功しました。',
 	'<strong>Well done!</strong> You successfully register the contest.' => '<strong>できました!</strong> コンテストの登録に成功しました。',

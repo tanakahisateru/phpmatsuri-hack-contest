@@ -17,10 +17,11 @@
 
 
 	<div class="form-actions">
+		<?php $saveLabel = (isset($_GET['from']) && $_GET['from'] == 'reviewPage') ? 'Save and back to the review page' : 'Save'; ?>
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',
 			'type'=>'primary',
-			'label'=>$model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Save'),
+			'label'=>$model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', $saveLabel),
 		)); ?>
 	</div>
 
