@@ -100,3 +100,10 @@ span.required
         font-size: 40px !important;
     }
 }
+
+#Hack_description_preview {
+    border: 1px solid #CCC;
+    padding: 4px;
+    margin-bottom: 10px;
+    overflow: auto;
+}

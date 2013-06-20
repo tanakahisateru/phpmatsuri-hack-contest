@@ -7,6 +7,8 @@ return array(
 	'Post' => '投稿',
 	'Update' => '更新',
 	'Delete' => '削除',
+	'Edit' => '編集',
+	'Preview' => 'プレビュー',
 	'Operations' => '操作',
 
 	'Personal Home' => '個人ホーム',
