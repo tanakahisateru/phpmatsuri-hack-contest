@@ -36,6 +36,7 @@ return array(
 	'Point' => 'ポイント',
 	'Comment' => 'コメント',
 	'User Name' => 'ユーザー名',
+	'Reviewer' => '評価した人',
 
 	'If you missed this presentation or have nothing to say, leave it nothing posted as is.'=>'この発表を見逃したか、とくに興味を持たなかった場合は、そのまま何も投稿しないでください。',
 	'Good' => 'いいね',

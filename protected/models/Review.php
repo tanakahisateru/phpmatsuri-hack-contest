@@ -21,6 +21,21 @@
 class Review extends CActiveRecord
 {
 	/**
+	 * @var string for search
+	 */
+	public $hackSequence;
+
+	/**
+	 * @var string for search
+	 */
+	public $hackTitle;
+
+	/**
+	 * @var string for search
+	 */
+	public $userTwitterName;
+
+	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
 	 * @return Review the static model class
@@ -80,6 +95,10 @@ class Review extends CActiveRecord
 			'hackId' => Yii::t('app', 'Hack'),
 			'point' => Yii::t('app', 'Point'),
 			'comment' => Yii::t('app', 'Comment'),
+
+			'userTwitterName' => Yii::t('app', 'Reviewer'),
+			'hackSequence' => Yii::t('app', 'Sequence Number'),
+			'hackTitle' => Yii::t('app', 'Title'),
 		);
 	}
 
@@ -103,15 +122,41 @@ class Review extends CActiveRecord
 		// should not be searched.
 
 		$criteria=new CDbCriteria;
+		$criteria->with = array('hack');
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('userId',$this->userId);
-		$criteria->compare('hackId',$this->hackId);
+		//$criteria->compare('userId',$this->userId);
+		//$criteria->compare('hackId',$this->hackId);
+		$criteria->compare('user.twitterName',$this->userTwitterName, true);
+
 		$criteria->compare('point',$this->point);
 		$criteria->compare('comment',$this->comment,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'sort'=>array(
+				'attributes' => array(
+					'hackSequence'=>array(
+						'asc'=>'hack.sequence',
+						'desc'=>'hack.sequence DESC',
+						'label'=>$this->getAttributeLabel('hackSequence'),
+						'default'=>'asc',
+					),
+					'hackTitle'=>array(
+						'asc'=>'hack.title',
+						'desc'=>'hack.title DESC',
+						'label'=>$this->getAttributeLabel('hackTitle'),
+						'default'=>'asc',
+					),
+					'userTwitterName'=>array(
+						'asc'=>'user.twitterName',
+						'desc'=>'user.twitterName DESC',
+						'label'=>$this->getAttributeLabel('userTwitterName'),
+						'default'=>'asc',
+					),
+					'*',
+				),
+			),
 		));
 	}
 
