@@ -80,15 +80,17 @@ $this->breadcrumbs=array(
 			<?php else : ?>
 				<h3><?php echo Yii::t('app', 'Your review...'); ?></h3>
 				<?php if (!$review->isNewRecord): ?>
-					<span class="review-summary">
-						<?php echo CHtml::encode($review->pointAsText); ?>
-					</span>
-					<span id="update-review">
-						<?php echo CHtml::link(
-							'<i class="icon-chevron-down"></i>' . Yii::t('app', 'Update'),
-							'#'
-						); ?>
-					</span>
+					<div style="margin-bottom: 30px;">
+						<span class="review-summary">
+							<?php echo CHtml::encode($review->pointAsText); ?>
+						</span>
+						<span id="update-review">
+							<?php echo CHtml::link(
+								'<i class="icon-chevron-down"></i>' . Yii::t('app', 'Update'),
+								'#'
+							); ?>
+						</span>
+					</div>
 				<?php endif; ?>
 
 				<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(

@@ -1,15 +1,15 @@
 <?php
 /* @var $data Hack */
 ?>
-<div class="span3">
+<div class="span4">
 	<div class="view trimmed-box clearfix">
 
-		<h4>
+		<span class="label label-info"><?php echo CHtml::encode($data->sequence); ?></span>
+		<h4 style="height: 40px;">
 			<?php echo CHtml::link(
 				CHtml::encode($data->title),
 				array('hack/review', 'id'=>$data->id)
 			); ?>
-			<span class="label label-info"><?php echo CHtml::encode($data->sequence); ?></span>
 		</h4>
 
 		<div class="text-right">
@@ -26,7 +26,7 @@
 		</div>
 
 		<?php if (!Yii::app()->user->isGuest): ?>
-			<div>
+			<div style="height: 20px;">
 				<?php $review = $data->getReviewOf(Yii::app()->user->asDbUser()); ?>
 				<?php if ($review): ?>
 					<?php echo Yii::t('app', 'Your review...'); ?>

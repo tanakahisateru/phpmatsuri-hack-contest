@@ -94,7 +94,7 @@ class Hack extends CActiveRecord
 	{
 		return array(
 			'approved'=>array(
-				'condition'=>'isApproved<>0',
+				'condition'=>'isApproved<>0 AND sequence IS NOT NULL',
 				'order'=>'sequence',
 			),
 		);
@@ -140,6 +140,10 @@ class Hack extends CActiveRecord
 		if (User::model()->findByPk($this->userId) === null) {
 			$this->addError('userId', "User does not exist.");
 			return false;
+		}
+		$this->sequence = trim($this->sequence);
+		if (empty($this->sequence)) {
+			$this->sequence = null;
 		}
 		return true;
 	}
