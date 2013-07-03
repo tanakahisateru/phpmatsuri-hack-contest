@@ -53,10 +53,10 @@ return array(
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'rules'=>array(
-			//	'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'/admin/<controller:\w+>/admin' => '/admin/<controller>/admin',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+				//'<controller:\w+>/<id:\d+>'=>'<controller>/view',
+				'/admin/<controller:\w+>/<action:\w+>' => '/admin/<controller>/<action>',
+				'/<controller:\w+>/<action:\w+>/<id:\d+>'=>'/<controller>/<action>',
+				'/<controller:\w+>/<action:\w+>'=>'/<controller>/<action>',
 			),
 			'showScriptName'=>false,
 		),
