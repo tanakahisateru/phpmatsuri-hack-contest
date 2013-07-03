@@ -106,6 +106,10 @@ $this->breadcrumbs=array(
 
 				<?php echo $form->textAreaRow($review,'comment',array('rows'=>3, 'class'=>'span4')); ?>
 
+				<div><?php echo CHtml::encode(Yii::t('app',
+					'If you missed this presentation or have nothing to say, leave it nothing posted as is.'
+				)); ?></div>
+
 				<div class="form-actions">
 					<?php $this->widget('bootstrap.widgets.TbButton', array(
 						'buttonType'=>'submit',

@@ -37,7 +37,8 @@ return array(
 	'Comment' => 'コメント',
 	'User Name' => 'ユーザー名',
 
-	'Even' => 'まあまあ',
+	'If you missed this presentation or have nothing to say, leave it nothing posted as is.'=>'この発表を見逃したか、とくに興味を持たなかった場合は、そのまま何も投稿しないでください。',
+	'Good' => 'いいね',
 	'Great' => 'すごい',
 	'Awesome' => '素晴らしい',
 

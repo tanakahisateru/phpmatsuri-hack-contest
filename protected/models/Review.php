@@ -127,7 +127,7 @@ class Review extends CActiveRecord
 	public function pointLabels()
 	{
 		return array(
-			1 => Yii::t('app', 'Even'),
+			1 => Yii::t('app', 'Good'),
 			2 => Yii::t('app', 'Great'),
 			3 => Yii::t('app', 'Awesome'),
 		);
