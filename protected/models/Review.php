@@ -67,7 +67,7 @@ class Review extends CActiveRecord
 			array('comment', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, userId, hackId, point, comment', 'safe', 'on'=>'search'),
+			array('id, userId, hackId, point, comment, hackSequence, hackTitle, userTwitterName', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -122,11 +122,13 @@ class Review extends CActiveRecord
 		// should not be searched.
 
 		$criteria=new CDbCriteria;
-		$criteria->with = array('hack');
+		$criteria->with = array('hack', 'user');
 
 		$criteria->compare('id',$this->id);
 		//$criteria->compare('userId',$this->userId);
 		//$criteria->compare('hackId',$this->hackId);
+		$criteria->compare('hack.sequence',$this->hackSequence, true);
+		$criteria->compare('hack.title',$this->hackTitle, true);
 		$criteria->compare('user.twitterName',$this->userTwitterName, true);
 
 		$criteria->compare('point',$this->point);
