@@ -20,16 +20,49 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		array(
-			'name'=>'userTwitterName',
+			'name'=>'userFullName',
 			'type'=>'raw',
 			'value'=>CHtml::link(
-				$model->user->twitterName,
+				$model->user->fullName,
 				array('/admin/userAdmin/view', 'id'=>$model->userId)
 			),
 		),
+		array(
+			'name'=>'userTwitterName',
+			'type'=>'raw',
+			'value'=>CHtml::link(
+				"@" . $model->user->twitterName,
+				"http://twitter.com/" . $model->user->twitterName,
+				array(
+					"target" => "_blank",
+				)
+			),
+		),
 		'title',
-		'description:ntext',
+		array(
+			'name' => 'description',
+			'type'=>'raw',
+			'value' => $this->renderPartial('_mdtext', array(
+				'data' => $model->description,
+			), true),
+		),
 		'isApproved:boolean',
 		'sequence',
 	),
 )); ?>
+
+<h2>Reviews</h2>
+<?php $this->widget('bootstrap.widgets.TbGridView',array(
+		'id'=>'review-grid',
+		'dataProvider'=>$model->reviewsDataProvider,
+		'columns'=>array(
+			'id',
+			'user.fullName',
+			'user.twitterName',
+			array(
+				'name'=>'point',
+				'value'=>'sprintf("%s (%d)", $data->pointAsText, $data->point)'
+			),
+			'comment:ntext',
+		),
+	)); ?>

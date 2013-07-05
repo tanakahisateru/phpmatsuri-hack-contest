@@ -16,17 +16,27 @@
  * @property Review[] $reviews
  *
  * @method Hack approved()
+ *
+ * @property CArrayDataProvider reviewsDataProvider
  */
 class Hack extends CActiveRecord
 {
-	/**
-	 * @var string for search
-	 */
+	/** @var string for search */
 	public $userTwitterName;
 
+	/** @var string for report */
+	public $userFullName;
+
+	/** @var int for report */
 	public $totalPoints;
+
+	/** @var float for report */
 	public $averagePoints;
+
+	/** @var int for report */
 	public $totalReviewers;
+
+	/** @var int for report */
 	public $totalComments;
 
 	/**
@@ -90,8 +100,14 @@ class Hack extends CActiveRecord
 			'title' => Yii::t('app', 'Title'),
 			'description' => Yii::t('app', 'Description'),
 			'isApproved' => Yii::t('app', 'Approved'),
-			'sequence' => Yii::t('app', 'Sequence Number'),
+			'sequence' => Yii::t('app', 'SEQ'),
 			'userTwitterName' => Yii::t('app', 'Twitter Name'),
+			'userFullName' => Yii::t('app', 'Full Name'),
+
+			'totalPoints' => Yii::t('app', 'Total'),
+			'totalReviewers' => Yii::t('app', 'Reviewers'),
+			'averagePoints' => Yii::t('app', 'Average'),
+			'totalComments' => Yii::t('app', 'Comments'),
 		);
 	}
 
@@ -128,6 +144,12 @@ class Hack extends CActiveRecord
 			'criteria'=>$criteria,
 			'sort'=>array(
 				'attributes' => array(
+					'userFullName'=>array(
+						'asc'=>'user.fullName',
+						'desc'=>'user.fullName DESC',
+						'label'=>$this->getAttributeLabel('userFullName'),
+						'default'=>'asc',
+					),
 					'userTwitterName'=>array(
 						'asc'=>'user.twitterName',
 						'desc'=>'user.twitterName DESC',
@@ -140,6 +162,25 @@ class Hack extends CActiveRecord
 		));
 	}
 
+	public function getReviewsDataProvider()
+	{
+		$criteria=new CDbCriteria;
+		$criteria->with = array('user');
+		$criteria->addCondition(array('hackId' => $this->id));
+		return new CActiveDataProvider(Review::model(), array(
+			'criteria'=>$criteria,
+			'sort'=>array(
+				'attributes' => array(
+					'id',
+					'point',
+				),
+			),
+		));
+	}
+
+	/**
+	 * @return CActiveDataProvider
+	 */
 	public function report()
 	{
 		$criteria=new CDbCriteria;
@@ -149,7 +190,8 @@ class Hack extends CActiveRecord
 		$criteria->select = array(
 			't.sequence as sequence',
 			't.title as title',
-			'user.twitterName as twitterName',
+			'user.twitterName as userTwitterName',
+			'user.fullName as userFullName',
 			'sum(reviews.point) as totalPoints',
 			'count(reviews.id) as totalReviewers',
 			'avg(reviews.point) as averagePoints',
@@ -160,6 +202,12 @@ class Hack extends CActiveRecord
 			'criteria'=>$criteria,
 			'sort'=>array(
 				'attributes'=>array(
+					'userFullName'=>array(
+						'asc'=>'user.fullName',
+						'desc'=>'user.fullName DESC',
+						'label'=>$this->getAttributeLabel('userFullName'),
+						'default'=>'asc',
+					),
 					'userTwitterName'=>array(
 						'asc'=>'user.twitterName',
 						'desc'=>'user.twitterName DESC',

@@ -44,11 +44,22 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'id',
 		//'userId',
 		array(
+			'name'=>'userFullName',
+			'type'=>'raw',
+			'value'=>'CHtml::link(
+				$data->user->fullName,
+				array("/admin/userAdmin/view", "id"=>$data->userId)
+			)'
+		),
+		array(
 			'name'=>'userTwitterName',
 			'type'=>'raw',
 			'value'=>'CHtml::link(
-				$data->user->twitterName,
-				array("/admin/userAdmin/view", "id"=>$data->userId)
+				"@" . $data->user->twitterName,
+				"http://twitter.com/" . $data->user->twitterName,
+				array(
+					"target" => "_blank",
+				)
 			)'
 		),
 		array(

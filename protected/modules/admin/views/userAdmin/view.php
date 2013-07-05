@@ -24,7 +24,17 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'fullName',
-		'twitterName',
+		array(
+			'name'=>'twitterName',
+			'type'=>'raw',
+			'value'=>CHtml::link(
+				"@" . $model->twitterName,
+				"http://twitter.com/" . $model->twitterName,
+				array(
+					"target" => "_blank",
+				)
+			),
+		),
 		'isAdmin:boolean',
 		'hideTwitterName:boolean',
 	),

@@ -15,7 +15,7 @@
 
 	<?php echo $form->textFieldRow($model,'title',array('class'=>'span5','maxlength'=>255)); ?>
 
-	<?php echo $form->textAreaRow($model,'description',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
+	<?php echo $form->textAreaRow($model,'description',array('rows'=>20, 'cols'=>50, 'class'=>'span8')); ?>
 
 	<?php echo $form->checkBoxRow($model,'isApproved'); ?>
 

@@ -26,16 +26,27 @@ $this->menu=array(
 			'type'=>'raw',
 			'value'=>'CHtml::link(
 				$data->title,
-				array("/hack/review", "id"=>$data->id)
+				array("/admin/hackAdmin/view", "id"=>$data->id)
+			)'
+		),
+		array(
+			'name'=>'userFullName',
+			'type'=>'raw',
+			'value'=>'CHtml::link(
+				$data->user->fullName,
+				array("/admin/userAdmin/view", "id"=>$data->user->id)
 			)'
 		),
 		array(
 			'name'=>'userTwitterName',
 			'type'=>'raw',
 			'value'=>'CHtml::link(
-				$data->user->twitterName,
-				array("/admin/userAdmin/view", "id"=>$data->userId)
-			)'
+				CHtml::encode("@" . $data->user->twitterName),
+				"http://twitter.com/" . $data->user->twitterName,
+				array(
+					"target" => "_blank",
+				)
+			)',
 		),
 		array(
 			'name'=>'totalPoints',
