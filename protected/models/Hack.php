@@ -176,6 +176,7 @@ class Hack extends CActiveRecord
 					'point',
 				),
 			),
+			'pagination'=>false,
 		));
 	}
 
