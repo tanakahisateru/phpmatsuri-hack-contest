@@ -28,7 +28,7 @@ class HackAdminController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('admin','view','create','update','delete'),
+				'actions'=>array('admin','view','create','update','delete', 'report'),
 				'expression'=>'$user->isAdmin',
 			),
 			array('deny',  // deny all users
@@ -128,6 +128,23 @@ class HackAdminController extends Controller
 			$model->attributes=$_GET['Hack'];
 
 		$this->render('admin',array(
+			'model'=>$model,
+		));
+	}
+
+	/**
+	 * report
+	 */
+	public function actionReport()
+	{
+		$this->layout='//layouts/column1';
+		$model=new Hack('search');
+		//$model->unsetAttributes();  // clear any default values
+
+		//if(isset($_GET['Hack']))
+		//	$model->attributes=$_GET['Hack'];
+
+		$this->render('report',array(
 			'model'=>$model,
 		));
 	}

@@ -15,7 +15,7 @@
  * @property User $user
  * @property Review[] $reviews
  *
- * @method approved() Hack approved()
+ * @method Hack approved()
  */
 class Hack extends CActiveRecord
 {
@@ -23,6 +23,11 @@ class Hack extends CActiveRecord
 	 * @var string for search
 	 */
 	public $userTwitterName;
+
+	public $totalPoints;
+	public $averagePoints;
+	public $totalReviewers;
+	public $totalComments;
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -111,7 +116,7 @@ class Hack extends CActiveRecord
 		// should not be searched.
 
 		$criteria=new CDbCriteria;
-		$criteria->with = array('user');
+		$criteria->with = array('user', 'reviews');
 
 		$criteria->compare('id',$this->id);
 		//$criteria->compare('userId',$this->userId);
@@ -132,6 +137,59 @@ class Hack extends CActiveRecord
 					'*',
 				),
 			),
+		));
+	}
+
+	public function report()
+	{
+		$criteria=new CDbCriteria;
+		$criteria->with = array('user', 'reviews');
+		$criteria->scopes = 'approved';
+		$criteria->group = 't.id';
+		$criteria->select = array(
+			't.sequence as sequence',
+			't.title as title',
+			'user.twitterName as twitterName',
+			'sum(reviews.point) as totalPoints',
+			'count(reviews.id) as totalReviewers',
+			'avg(reviews.point) as averagePoints',
+			'count(reviews.comment) as totalComments',
+		);
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+			'sort'=>array(
+				'attributes'=>array(
+					'userTwitterName'=>array(
+						'asc'=>'user.twitterName',
+						'desc'=>'user.twitterName DESC',
+						'label'=>$this->getAttributeLabel('userTwitterName'),
+						'default'=>'asc',
+					),
+					'totalPoints' => array(
+						'asc'=>'totalPoints',
+						'desc'=>'totalPoints DESC',
+						'default'=>'desc',
+					),
+					'averagePoints' => array(
+						'asc'=>'averagePoints',
+						'desc'=>'averagePoints DESC',
+						'default'=>'desc',
+					),
+					'totalReviewers' => array(
+						'asc'=>'totalReviewers',
+						'desc'=>'totalReviewers DESC',
+						'default'=>'desc',
+					),
+					'totalComments' => array(
+						'asc'=>'totalComments',
+						'desc'=>'totalComments DESC',
+						'default'=>'desc',
+					),
+					'*',
+				),
+			),
+			'pagination'=>false,
 		));
 	}
 

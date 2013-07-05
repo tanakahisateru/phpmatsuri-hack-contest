@@ -11,4 +11,5 @@ $this->breadcrumbs=array(
 	<li><?php echo CHtml::link('Manage Users', array('userAdmin/admin')); ?></li>
 	<li><?php echo CHtml::link('Manage Hacks', array('hackAdmin/admin')); ?></li>
 	<li><?php echo CHtml::link('Manage Reviews', array('reviewAdmin/admin')); ?></li>
+	<li><?php echo CHtml::link('Report Reviews', array('hackAdmin/report')); ?></li>
 </ul>
