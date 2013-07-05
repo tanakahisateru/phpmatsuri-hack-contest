@@ -166,7 +166,8 @@ class Hack extends CActiveRecord
 	{
 		$criteria=new CDbCriteria;
 		$criteria->with = array('user');
-		$criteria->addCondition(array('hackId' => $this->id));
+		$criteria->addCondition('t.hackId = :hackId');
+		$criteria->params = array('hackId'=>$this->id);
 		return new CActiveDataProvider(Review::model(), array(
 			'criteria'=>$criteria,
 			'sort'=>array(
