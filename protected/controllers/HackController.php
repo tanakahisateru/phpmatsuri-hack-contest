@@ -65,7 +65,7 @@ class HackController extends Controller
 					);
 				}
 				if (isset($_GET['from']) && $_GET['from'] == 'reviewPage') {
-					$this->redirect(array('review', 'id'=>$model->id));
+					$this->redirect(array('review', 'seq'=>$model->sequence));
 				}
 				else {
 					$this->redirect(array('user/profile'));
@@ -98,10 +98,10 @@ class HackController extends Controller
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 
-	public function actionReview($id)
+	public function actionReview($seq)
 	{
 		$this->layout = 'column1';
-		$model = $this->loadModel($id);
+		$model = $this->loadModelBySequence($seq);
 		if(!$model->isApproved) {
 			throw new CHttpException(404,'The requested page does not exist.');
 		}
@@ -111,7 +111,7 @@ class HackController extends Controller
 
 		$review = null;
 		if (!$user->isGuest) {
-			$review = $this->loadOrCreateReviewByCurrentUserFor($id);
+			$review = $this->loadOrCreateReviewByCurrentUserFor($model->id);
 		}
 		if (isset($_POST['Review'])) {
 			if ($user->isGuest) {
@@ -123,7 +123,7 @@ class HackController extends Controller
 					'success',
 					Yii::t('app', '<strong>Thanks!</strong> You successfully send your review.')
 				);
-				$this->redirect(array('review', 'id'=>$id));
+				$this->redirect(array('review', 'seq'=>$seq));
 			}
 		}
 
@@ -149,7 +149,7 @@ class HackController extends Controller
 					Yii::t('app', 'Your review has been removed.')
 				);
 			}
-			$this->redirect(array('review', 'id'=>$id));
+			$this->redirect(array('review', 'seq'=>$review->hack->sequence));
 		}
 		else
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
@@ -199,5 +199,16 @@ class HackController extends Controller
 			$review->hackId = $id;
 		}
 		return $review;
+	}
+
+	/**
+	 * @param string $seq
+	 */
+	private function loadModelBySequence($seq)
+	{
+		$model=Hack::model()->findByAttributes(array('sequence'=>$seq));
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $model;
 	}
 }

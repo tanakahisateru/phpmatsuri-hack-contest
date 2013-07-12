@@ -67,7 +67,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 			'type'=>'raw',
 			'value'=>'CHtml::link(
 				$data->title,
-				array("/hack/review", "id"=>$data->id)
+				array("/hack/review", "seq"=>$data->sequence)
 			)'
 		),
 		'isApproved:boolean',

@@ -8,7 +8,7 @@
 		<h4 style="height: 40px;">
 			<?php echo CHtml::link(
 				CHtml::encode($data->title),
-				array('hack/review', 'id'=>$data->id)
+				array('hack/review', 'seq'=>$data->sequence)
 			); ?>
 		</h4>
 
