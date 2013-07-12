@@ -181,11 +181,11 @@ class Hack extends CActiveRecord
 	}
 
 	/**
-	 * @return CActiveDataProvider
+	 * @return CDbCriteria
 	 */
-	public function report()
+	protected function createReportCriteriaBase()
 	{
-		$criteria=new CDbCriteria;
+		$criteria = new CDbCriteria;
 		$criteria->with = array('user', 'reviews');
 		$criteria->scopes = 'approved';
 		$criteria->group = 't.id';
@@ -199,6 +199,26 @@ class Hack extends CActiveRecord
 			'avg(reviews.point) as averagePoints',
 			'count(reviews.comment) as totalComments',
 		);
+		return $criteria;
+	}
+
+	/**
+	 *
+	 * @return Hack[]
+	 */
+	public function getReportData()
+	{
+		$criteria = $this->createReportCriteriaBase();
+		$criteria->order = 'sequence';
+		return $this->findAll($criteria);
+	}
+
+	/**
+	 * @return CActiveDataProvider
+	 */
+	public function getReportDataProvider()
+	{
+		$criteria = $this->createReportCriteriaBase();
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

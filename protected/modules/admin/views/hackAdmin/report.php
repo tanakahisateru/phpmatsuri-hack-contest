@@ -7,6 +7,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
+	array('label'=>'Download CSV','url'=>array('downloadReportCsv')),
 );
 ?>
 
@@ -18,7 +19,7 @@ $this->menu=array(
 ?>
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'hack-grid',
-	'dataProvider'=>$model->report(),
+	'dataProvider'=>$model->getReportDataProvider(),
 	'columns'=>array(
 		'sequence',
 		array(
@@ -61,3 +62,11 @@ $this->menu=array(
 	),
 	'enablePagination'=>false,
 )); ?>
+
+<div class="pull-right">
+	<?php $this->widget('bootstrap.widgets.TbMenu', array(
+			'type'=>'pills',
+			'items'=>$this->menu,
+			'htmlOptions'=>array('class'=>'operations'),
+		)); ?>
+</div>

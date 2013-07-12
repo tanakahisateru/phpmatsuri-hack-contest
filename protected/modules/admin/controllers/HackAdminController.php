@@ -28,7 +28,10 @@ class HackAdminController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('admin','view','create','update','delete', 'report'),
+				'actions'=>array(
+					'admin','view','create','update','delete', 'report',
+					'downloadReportCsv', 'downloadHackCsv',
+				),
 				'expression'=>'$user->isAdmin',
 			),
 			array('deny',  // deny all users
@@ -147,6 +150,72 @@ class HackAdminController extends Controller
 		$this->render('report',array(
 			'model'=>$model,
 		));
+	}
+
+	public function actionDownloadHackCsv()
+	{
+		$model = Hack::model();
+		/* @var $data Hack[] */
+		$data = $model->findAllByAttributes(array('isApproved'=>true), array('order'=>'id'));
+		header('Content-Type: text/csv');
+		header('Content-Disposition: attachment; filename=hacks.csv');
+		//header('Content-Type: text/plain;charset=utf-8');
+		$f = fopen('php://output', 'w');
+		fputcsv($f, array(
+			$model->getAttributeLabel('id'),
+			$model->getAttributeLabel('userFullName'),
+			$model->getAttributeLabel('userTwitterName'),
+			$model->getAttributeLabel('title'),
+			$model->getAttributeLabel('isApproved'),
+			$model->getAttributeLabel('sequence'),
+		));
+		foreach ($data as $hack) {
+			fputcsv($f, array(
+				$hack->id,
+				$hack->user->fullName,
+				'@' . $hack->user->twitterName,
+				$hack->title,
+				$hack->isApproved,
+				$hack->sequence,
+			));
+		}
+		fclose($f);
+	}
+
+	/**
+	 * report csv
+	 */
+	public function actionDownloadReportCsv()
+	{
+		$model = Hack::model();
+		$data = $model->getReportData();
+		header('Content-Type: text/csv');
+		header('Content-Disposition: attachment; filename=report.csv');
+		//header('Content-Type: text/plain;charset=utf-8');
+		$f = fopen('php://output', 'w');
+		fputcsv($f, array(
+			$model->getAttributeLabel('sequence'),
+			$model->getAttributeLabel('title'),
+			$model->getAttributeLabel('userFullName'),
+			$model->getAttributeLabel('userTwitterName'),
+			$model->getAttributeLabel('totalPoints'),
+			$model->getAttributeLabel('totalReviewers'),
+			$model->getAttributeLabel('averagePoints'),
+			$model->getAttributeLabel('totalComments'),
+		));
+		foreach ($data as $hack) {
+			fputcsv($f, array(
+				$hack->sequence,
+				$hack->title,
+				$hack->user->fullName,
+				'@' . $hack->user->twitterName,
+				$hack->totalPoints,
+				$hack->totalReviewers,
+				sprintf('%0.2f', $hack->averagePoints),
+				$hack->totalComments,
+			));
+		}
+		fclose($f);
 	}
 
 	/**

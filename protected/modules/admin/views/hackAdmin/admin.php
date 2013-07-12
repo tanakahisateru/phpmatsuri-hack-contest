@@ -6,6 +6,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'Create Hack','url'=>array('create')),
+	array('label'=>'Download CSV','url'=>array('downloadHackCsv')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
