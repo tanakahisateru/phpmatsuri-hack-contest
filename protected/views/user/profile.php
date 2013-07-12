@@ -40,7 +40,7 @@ $this->menu=array(
 		'attributes'=>array(
 			'title',
 			array(
-				'label' => $model->getAttributeLabel('description'),
+				'label' => Yii::t('app', $model->getAttributeLabel('description')),
 				'type'=>'raw',
 				'value' => $this->renderPartial('_mdtext', array(
 					'data' => $model->hack->description,
