@@ -14,8 +14,8 @@ $this->breadcrumbs=array(
 	<div class="span8">
 		<div class="trimmed-box">
 			<h1>
+				<span class="label label-info"><?php echo CHtml::encode($model->sequence); ?></span><br />
 				<?php echo CHtml::encode($model->title); ?>
-				<span class="label label-info"><?php echo CHtml::encode($model->sequence); ?></span>
 			</h1>
 
 			<div class="text-right">
