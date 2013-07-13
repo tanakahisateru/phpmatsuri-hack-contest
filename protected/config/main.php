@@ -79,6 +79,12 @@ return array(
 				),
 			),
 		),
+		'session'=>array(
+			'class'=>'CDbHttpSession',
+			'connectionID'=>'db',
+			'sessionTableName'=>'http_session',
+			//'autoCreateSessionTable'=>true,
+		),
 		'widgetFactory'=>array(
 			'widgets'=>array(
 				'TbListView'=>array(
