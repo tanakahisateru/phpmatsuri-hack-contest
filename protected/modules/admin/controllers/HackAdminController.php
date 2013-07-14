@@ -30,7 +30,7 @@ class HackAdminController extends Controller
 			array('allow',
 				'actions'=>array(
 					'admin','view','create','update','delete', 'report',
-					'downloadReportCsv', 'downloadHackCsv',
+					'downloadReportCsv', 'downloadHackCsv', 'uploadHackCsv',
 				),
 				'expression'=>'$user->isAdmin',
 			),
@@ -180,6 +180,32 @@ class HackAdminController extends Controller
 			));
 		}
 		fclose($f);
+	}
+
+	public function actionUploadHackCsv()
+	{
+		$file = CUploadedFile::getInstanceByName('csv');
+		$f = fopen($file->tempName, 'r');
+		fgetcsv($f); // header
+		do {
+			$row = fgetcsv($f);
+			$csv[] = $row;
+		}while(!empty($row));
+		fclose($f);
+
+		foreach ($csv as $row) {
+			$id = $row[0];
+			$twitter = $row[2];
+			$seq = $row[5];
+			/* @var $hack Hack */
+			$hack = Hack::model()->findByPk($id);
+			if ($hack && '@' . $hack->user->twitterName == $twitter) {
+				$hack->sequence = $seq;
+				$hack->save(false);
+			}
+		}
+
+		$this->redirect(array('admin'));
 	}
 
 	/**

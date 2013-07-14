@@ -1,4 +1,6 @@
 <?php
+/** @var $this Controller */
+
 $this->breadcrumbs=array(
 	'Admin'=>array('/admin'),
 	'Hacks',
@@ -86,3 +88,11 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'htmlOptions'=>array('class'=>'operations'),
 	)); ?>
 </div>
+
+<h3>CSV upload</h3>
+<?php echo CHtml::beginForm(array('uploadHackCsv'), 'post', array(
+	'enctype'=>'multipart/form-data',
+)); ?>
+<?php echo CHtml::fileField('csv'); ?>
+<?php echo CHtml::submitButton(); ?>
+<?php echo CHtml::endForm(); ?>
