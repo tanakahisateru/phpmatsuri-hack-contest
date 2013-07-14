@@ -72,7 +72,7 @@ class Hack extends CActiveRecord
 			array('description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, userId, title, description, isApproved, sequence', 'safe', 'on'=>'search'),
+			array('id, userId, title, description, isApproved, sequence, userTwitterName, userFullName', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -134,11 +134,14 @@ class Hack extends CActiveRecord
 		$criteria=new CDbCriteria;
 		$criteria->with = array('user', 'reviews');
 
-		$criteria->compare('id',$this->id);
+		$criteria->compare('t.id',$this->id);
 		//$criteria->compare('userId',$this->userId);
+		$criteria->compare('user.fullName',$this->userFullName, true);
 		$criteria->compare('user.twitterName',$this->userTwitterName, true);
-		$criteria->compare('title',$this->title,true);
-		$criteria->compare('description',$this->description,true);
+		$criteria->compare('t.title',$this->title,true);
+		$criteria->compare('t.description',$this->description,true);
+		$criteria->compare('t.isApproved',$this->isApproved);
+		$criteria->compare('t.sequence',$this->sequence,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
