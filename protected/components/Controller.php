@@ -27,8 +27,7 @@ class Controller extends CController
 	 */
 	protected function beforeAction($action)
 	{
-		$session = new CHttpSession;
-		$session->open();
+		$session = Yii::app()->session;
 		if (isset($session['language']) && in_array($session['language'], array('ja', 'en'))) {
 			Yii::app()->language = $session['language'];
 		}
