@@ -22,7 +22,11 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$hacksDataProvider=new CActiveDataProvider(Hack::model()->approved());
+		$hacksDataProvider=new CActiveDataProvider(Hack::model()->approved(),array(
+			'pagination'=>array(
+				'pageSize' => 14,
+			),
+		));
 		$this->render('index',array(
 			'hacksDataProvider'=>$hacksDataProvider,
 		));
