@@ -114,6 +114,11 @@ class HackController extends Controller
 			$review = $this->loadOrCreateReviewByCurrentUserFor($model->id);
 		}
 		if (isset($_POST['Review'])) {
+
+			// Block to post review: start
+			throw new CHttpException(403,'This action not allowed. Sorry, this event is already finished.');
+			// end
+
 			if ($user->isGuest) {
 				throw new CHttpException(403,'This action not allowed.');
 			}
